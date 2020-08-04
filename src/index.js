@@ -23,7 +23,6 @@ const
         intro: '',
         title: 'We appreciate your feedback.',
         submitted: false,
-        value: 0,
         comments: {
             ID: 1,
             enabled: true,
