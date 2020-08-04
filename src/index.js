@@ -1,14 +1,58 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './index.scss';
+import Rating from './rating/rating';
 import * as serviceWorker from './serviceWorker';
 
+/**
+     * Set the rating value on the form
+     *
+     * @param {Int} value
+     */
+const
+    setRatingValue = (value) => {
+        rating = value;
+    },
+    onSubmit = (e) => {
+        e.preventDefault();
+        form.submitted = true;
+        return form.submitted;
+    },
+    form = {
+        successMessage: 'Thanks for you feedback.',
+        intro: '',
+        title: 'We appreciate your feedback.',
+        submitted: false,
+        value: 0,
+        comments: {
+            ID: 1,
+            enabled: true,
+            expanded: false,
+            props: []
+        }
+    },
+    page = {
+        id: 1,
+        name: 'Rating block'
+    };
+
+let rating = 0;
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Rating
+            name='Rating block'
+            value={rating}
+            errors={[]}
+            loading={false}
+            setRatingValue={setRatingValue}
+            onSubmit={onSubmit}
+            form={form}
+            page={page}
+            enabled
+        />
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
