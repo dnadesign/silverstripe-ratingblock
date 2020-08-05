@@ -1,9 +1,16 @@
 const { merge } = require('webpack-merge');
+const path = require('path');
 const common = require('./webpack.common.js');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const path = require('path');
 
 module.exports = merge(common, {
+    entry: './src/index.js',
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js',
+        publicPath: 'http://localhost:8080/dist/'
+    },
     mode: 'development',
     devtool: 'inline-source-map',
     module: {
