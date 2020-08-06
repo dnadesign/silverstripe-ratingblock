@@ -43,6 +43,7 @@ class Rating extends Component {
 
         this.state = {
             value: rating,
+            comments: this.form.comments.value,
             submitted: this.form.submitted,
             expanded: this.form.comments.expanded,
             previouslyRated: previouslyRated
@@ -109,8 +110,11 @@ class Rating extends Component {
                             rows={5}
                             readOnly={submitted}
                             disabled={disabled || submitted}
-                            value={this.form.comments.value}
-                            onChange={this.form.comments.onChange}
+                            value={this.state.comments}
+                            onChange={(event, newValue) => {
+                                this.props.setCommentsValue(newValue);
+                                this.setState({ comments: newValue });
+                            }}
                             name={this.form.comments.name}
                         />
                         {errors['comments'] && (

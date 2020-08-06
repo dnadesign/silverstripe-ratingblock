@@ -7491,6 +7491,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
         previouslyRated = rating > 0;
     _this.state = {
       value: rating,
+      comments: _this.form.comments.value,
       submitted: _this.form.submitted,
       expanded: _this.form.comments.expanded,
       previouslyRated: previouslyRated
@@ -7561,8 +7562,14 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
         rows: 5,
         readOnly: submitted,
         disabled: disabled || submitted,
-        value: this.form.comments.value,
-        onChange: this.form.comments.onChange,
+        value: this.state.comments,
+        onChange: function onChange(event, newValue) {
+          _this2.props.setCommentsValue(newValue);
+
+          _this2.setState({
+            comments: newValue
+          });
+        },
         name: this.form.comments.name
       }), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
