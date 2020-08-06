@@ -53,9 +53,6 @@ module.exports = merge(common, {
         alias: {
             'react': path.resolve(__dirname, './node_modules/react'),
             'react-dom': path.resolve(__dirname, './node_modules/react-dom')
-            // '@babel/runtime': path.resolve(__dirname, './node_modules/@babel/runtime'),
-            // '@material-ui/core': path.resolve(__dirname, './node_modules/@material-ui/core'),
-            // '@material-ui/lab': path.resolve(__dirname, './node_modules/@material-ui/lab'),
         }
     },
     externals: {

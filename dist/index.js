@@ -7561,7 +7561,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
         rows: 5,
         readOnly: submitted,
         disabled: disabled || submitted
-      }, this.form.comments.props)), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+      }, this.form.comments.props.bind())), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, errors['comments']))));
     }

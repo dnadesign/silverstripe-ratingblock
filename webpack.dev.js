@@ -2,7 +2,6 @@ const { merge } = require('webpack-merge');
 const path = require('path');
 const common = require('./webpack.common.js');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
-const path = require('path');
 
 module.exports = merge(common, {
     entry: './src/index.js',

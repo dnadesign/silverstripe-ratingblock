@@ -109,7 +109,7 @@ class Rating extends Component {
                             rows={5}
                             readOnly={submitted}
                             disabled={disabled || submitted}
-                            {...this.form.comments.props}
+                            {...this.form.comments.props.bind()}
                         />
                         {errors['comments'] && (
                             <p className='rating__error'>{errors['comments']}</p>
