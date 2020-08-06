@@ -7563,11 +7563,11 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
         readOnly: submitted,
         disabled: disabled || submitted,
         value: this.state.comments,
-        onChange: function onChange(event, newValue) {
-          _this2.props.setCommentsValue(newValue);
+        onChange: function onChange(event) {
+          _this2.props.setCommentsValue(event.target.value);
 
           _this2.setState({
-            comments: newValue
+            comments: event.target.value
           });
         },
         name: this.form.comments.name

@@ -111,9 +111,9 @@ class Rating extends Component {
                             readOnly={submitted}
                             disabled={disabled || submitted}
                             value={this.state.comments}
-                            onChange={(event, newValue) => {
-                                this.props.setCommentsValue(newValue);
-                                this.setState({ comments: newValue });
+                            onChange={(event) => {
+                                this.props.setCommentsValue(event.target.value);
+                                this.setState({ comments: event.target.value });
                             }}
                             name={this.form.comments.name}
                         />
