@@ -7557,11 +7557,14 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
         className: "sr-only",
         htmlFor: this.props.CommentsID
-      }, "Additional comments"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("textarea", Object.assign({
+      }, "Additional comments"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("textarea", {
         rows: 5,
         readOnly: submitted,
-        disabled: disabled || submitted
-      }, this.form.comments.props.bind())), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+        disabled: disabled || submitted,
+        value: this.form.comments.value,
+        onChange: this.form.comments.onChange,
+        name: this.form.comments.name
+      }), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, errors['comments']))));
     }
