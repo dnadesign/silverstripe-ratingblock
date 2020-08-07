@@ -7361,7 +7361,7 @@ var loading_Loading = function Loading(props) {
   // https://material-ui.com/components/progress/#delaying-appearance
 
 
-  external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.useEffect(function (props) {
+  external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.useEffect(function () {
     if (props.showImmediately) {
       setShow(true);
       return;
@@ -7373,7 +7373,7 @@ var loading_Loading = function Loading(props) {
     return function () {
       return clearTimeout(timer);
     };
-  }, [props]);
+  }, [props.showImmediately]);
   return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
     className: "loading ".concat(classes || '')
   }, show && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(esm_CircularProgress_CircularProgress, Object.assign({

@@ -9,7 +9,7 @@ const Loading = props => {
 
     // Only show the spinner after 1s of inactivity
     // https://material-ui.com/components/progress/#delaying-appearance
-    React.useEffect((props) => {
+    React.useEffect(() => {
         if (props.showImmediately) {
             setShow(true);
             return;
@@ -18,7 +18,7 @@ const Loading = props => {
             setShow(true);
         }, 750);
         return () => clearTimeout(timer);
-    }, [props]);
+    }, [props.showImmediately]);
 
     return (
         <div className={`loading ${classes || ''}`}>
