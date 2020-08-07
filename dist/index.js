@@ -7436,17 +7436,15 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props); // Page name allows us to store a reference to the page without relying on a page relation
 
     _this.page = props.page;
-    _this.page['name'] = _this.page.name || 'unknown';
-    _this.form = props.form; // check if this page has been previously rated by looking
+    _this.page['name'] = _this.page.name || 'unknown'; // check if this page has been previously rated by looking
     // for thje cookie with the pageName
 
     var rating = props.value || 0,
         previouslyRated = rating > 0;
     _this.state = {
       value: rating,
-      comments: _this.form.comments.value,
-      submitted: _this.form.submitted,
-      expanded: _this.form.comments.expanded,
+      comments: _this.props.form.comments.value,
+      expanded: _this.props.form.comments.expanded,
       previouslyRated: previouslyRated
     };
     return _this;
@@ -7473,7 +7471,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
     value: function renderTitle() {
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("h3", {
         className: "rating__title"
-      }, this.form.title || 'Rate this page');
+      }, this.props.form.title || 'Rate this page');
     }
     /**
      * Render comments area
@@ -7490,7 +7488,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
         'rating__comments--expanded': this.state.expanded
       }),
           errors = this.props.errors;
-      return this.form.comments.enabled && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      return this.props.form.comments.enabled && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__comments-outer"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
         className: "rating__comments-toggle",
@@ -7523,7 +7521,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
             comments: event.target.value
           });
         },
-        name: this.form.comments.name
+        name: this.props.form.comments.name
       }), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, errors['comments']))));
@@ -7539,7 +7537,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
 
       var _this$props = this.props,
           errors = _this$props.errors,
-          value = _this$props.value;
+          form = _this$props.form;
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__stars"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(esm_Rating_Rating, {
@@ -7559,7 +7557,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
             value: newValue
           });
         },
-        disabled: disabled || this.form.submitted
+        disabled: disabled || form.submitted
       }), errors['rating'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, "Please select a rating"));
@@ -7588,11 +7586,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
         "aria-disabled": disabled,
         disabled: disabled,
         onClick: function onClick(e) {
-          var submitted = _this4.props.onSubmit(e);
-
-          submitted && _this4.setState({
-            submitted: true
-          });
+          _this4.props.onSubmit(e);
         }
       }, "Submit"));
     }
@@ -7607,23 +7601,23 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
       })) : submitted ?
       /*#__PURE__*/
       // has just been submitted - show success message
-      external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, this.form.successMessage ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, this.props.form.successMessage ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__result",
         dangerouslySetInnerHTML: {
-          __html: this.form.successMessage
+          __html: this.props.form.successMessage
         }
       }) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__result"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, "Thank you for your submission"))) : this.state.previouslyRated ?
       /*#__PURE__*/
       // rated in a previous session - dont show any message
-      external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null) : this.form.intro ?
+      external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null) : this.props.form.intro ?
       /*#__PURE__*/
       // intro
       external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__into",
         dangerouslySetInnerHTML: {
-          __html: this.form.intro
+          __html: this.props.form.intro
         }
       }) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", null);
     }
@@ -7640,9 +7634,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          enabled = _this$props2.enabled,
-          onSubmit = _this$props2.onSubmit;
+      var enabled = this.props.enabled;
 
       if (!enabled) {
         return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
@@ -7650,11 +7642,12 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
         });
       }
 
-      var _this$props3 = this.props,
-          name = _this$props3.name,
-          errors = _this$props3.errors,
-          loading = _this$props3.loading,
-          disabled = this.state.previouslyRated || loading || this.form.submitted,
+      var _this$props2 = this.props,
+          name = _this$props2.name,
+          errors = _this$props2.errors,
+          loading = _this$props2.loading,
+          form = _this$props2.form,
+          disabled = this.state.previouslyRated || loading || form.submitted,
           classes = classnames_default()({
         'rating': true,
         'rating--disabled': disabled,
@@ -7671,7 +7664,7 @@ var rating_Rating = /*#__PURE__*/function (_Component) {
         className: "rating__message"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, "An errors occurred", /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("br", null), "Please try again later")) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("form", {
         className: "rating__form"
-      }, this.renderTitle(), this.renderIntro(loading, this.form.submitted), this.renderStars(disabled), !this.state.previouslyRated && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, this.renderComments(disabled, this.form.submitted), this.renderSubmit(disabled))));
+      }, this.renderTitle(), this.renderIntro(loading, form.submitted), this.renderStars(disabled), !this.state.previouslyRated && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, this.renderComments(disabled, form.submitted), this.renderSubmit(disabled))));
     }
   }]);
 

@@ -33,8 +33,6 @@ class Rating extends Component {
         this.page = props.page;
         this.page['name'] = this.page.name || 'unknown';
 
-        this.form = props.form;
-
         // check if this page has been previously rated by looking
         // for thje cookie with the pageName
         const rating = props.value || 0,
@@ -42,9 +40,8 @@ class Rating extends Component {
 
         this.state = {
             value: rating,
-            comments: this.form.comments.value,
-            submitted: this.form.submitted,
-            expanded: this.form.comments.expanded,
+            comments: this.props.form.comments.value,
+            expanded: this.props.form.comments.expanded,
             previouslyRated: previouslyRated
         };
     }
@@ -64,7 +61,7 @@ class Rating extends Component {
         return <h3
             className='rating__title'
         >
-            {this.form.title || 'Rate this page'}
+            {this.props.form.title || 'Rate this page'}
         </h3>;
     }
 
@@ -78,7 +75,7 @@ class Rating extends Component {
             'rating__comments--expanded': this.state.expanded
         }), { errors } = this.props;
 
-        return this.form.comments.enabled && (
+        return this.props.form.comments.enabled && (
             <div className='rating__comments-outer'>
                 <button
                     className='rating__comments-toggle'
@@ -114,7 +111,7 @@ class Rating extends Component {
                                 this.props.setCommentsValue(event.target.value);
                                 this.setState({ comments: event.target.value });
                             }}
-                            name={this.form.comments.name}
+                            name={this.props.form.comments.name}
                         />
                         {errors['comments'] && (
                             <p className='rating__error'>{errors['comments']}</p>
@@ -129,7 +126,7 @@ class Rating extends Component {
      * Render stars
      */
     renderStars(disabled) {
-        const { errors, value } = this.props;
+        const { errors, form } = this.props;
 
         return <div className='rating__stars'>
             <MaterialRating
@@ -141,7 +138,7 @@ class Rating extends Component {
                     this.props.setRatingValue(newValue);
                     this.setState({ value: newValue });
                 }}
-                disabled={disabled || this.form.submitted}
+                disabled={disabled || form.submitted}
             />
             {errors['rating'] && (
                 <p className='rating__error'>Please select a rating</p>
@@ -171,8 +168,7 @@ class Rating extends Component {
                 aria-disabled={disabled}
                 disabled={disabled}
                 onClick={(e) => {
-                    const submitted = this.props.onSubmit(e);
-                    submitted && this.setState({ submitted: true });
+                    this.props.onSubmit(e);
                 }}
             >
                 Submit
@@ -189,11 +185,11 @@ class Rating extends Component {
             ) : submitted ? (
                 // has just been submitted - show success message
                 <>
-                    {this.form.successMessage ? (
+                    {this.props.form.successMessage ? (
                         <div
                             className='rating__result'
                             dangerouslySetInnerHTML={{
-                                __html: this.form.successMessage
+                                __html: this.props.form.successMessage
                             }}
                         />
                     ) : (
@@ -205,12 +201,12 @@ class Rating extends Component {
             ) : this.state.previouslyRated ? (
                 // rated in a previous session - dont show any message
                 <div />
-            ) : this.form.intro ? (
+            ) : this.props.form.intro ? (
                 // intro
                 <div
                     className='rating__into'
                     dangerouslySetInnerHTML={{
-                        __html: this.form.intro
+                        __html: this.props.form.intro
                     }}
                 />
             ) : <div />
@@ -227,14 +223,14 @@ class Rating extends Component {
      * Error - Error from the graphql backend. Only show errors message.
      */
     render() {
-        const { enabled, onSubmit } = this.props;
+        const { enabled } = this.props;
 
         if (!enabled) {
             return <div data-rating-disabled />;
         }
 
-        const { name, errors, loading } = this.props,
-            disabled = this.state.previouslyRated || loading || this.form.submitted,
+        const { name, errors, loading, form } = this.props,
+            disabled = this.state.previouslyRated || loading || form.submitted,
             classes = classNames({
                 'rating': true,
                 'rating--disabled': disabled,
@@ -254,12 +250,12 @@ class Rating extends Component {
                             className='rating__form'
                         >
                             {this.renderTitle()}
-                            {this.renderIntro(loading, this.form.submitted)}
+                            {this.renderIntro(loading, form.submitted)}
                             {this.renderStars(disabled)}
 
                             {!this.state.previouslyRated && (
                                 <>
-                                    {this.renderComments(disabled, this.form.submitted)}
+                                    {this.renderComments(disabled, form.submitted)}
                                     {this.renderSubmit(disabled)}
                                 </>
                             )}
