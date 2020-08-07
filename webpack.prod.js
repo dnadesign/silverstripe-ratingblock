@@ -9,7 +9,7 @@ const pkg = require('./package.json');
 const libraryName = pkg.name;
 
 module.exports = merge(common, {
-    entry: './src/rating/rating.js',
+    entry: './src/rating/index.js',
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'index.js',

@@ -189,6 +189,10 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "RateComponent", function() { return /* reexport */ rate_component; });
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* reexport */ rate_component; });
+
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -470,7 +474,7 @@ var loading_Loading = function Loading(props) {
 // EXTERNAL MODULE: ./src/rating/sass/rating.scss
 var sass_rating = __webpack_require__(5);
 
-// CONCATENATED MODULE: ./src/rating/rating.js
+// CONCATENATED MODULE: ./src/rating/rate.component.js
 
 
 
@@ -492,7 +496,7 @@ var sass_rating = __webpack_require__(5);
  * custom star svg as thje m,aterial ones had too thick stroke
  */
 
-var rating_Star = function Star(props) {
+var rate_component_Star = function Star(props) {
   return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("svg", {
     width: "100%",
     height: "100%",
@@ -505,7 +509,7 @@ var rating_Star = function Star(props) {
   }));
 };
 
-var rating_RateComponent = /*#__PURE__*/function (_Component) {
+var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
   _inherits(RateComponent, _Component);
 
   var _super = _createSuper(RateComponent);
@@ -624,10 +628,10 @@ var rating_RateComponent = /*#__PURE__*/function (_Component) {
         className: "rating__stars"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(lab_["Rating"], {
         name: "rating-".concat(this.props.name),
-        emptyIcon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(rating_Star, {
+        emptyIcon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(rate_component_Star, {
           stroke: "#fff"
         }),
-        icon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(rating_Star, {
+        icon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(rate_component_Star, {
           stroke: "#fff",
           fill: "#fff"
         }),
@@ -753,7 +757,10 @@ var rating_RateComponent = /*#__PURE__*/function (_Component) {
   return RateComponent;
 }(external_commonjs_react_commonjs2_react_amd_React_root_React_["Component"]);
 
-/* harmony default export */ var rating_rating = __webpack_exports__["default"] = (rating_RateComponent);
+/* harmony default export */ var rate_component = (rate_component_RateComponent);
+// CONCATENATED MODULE: ./src/rating/index.js
+
+
 
 /***/ })
 /******/ ]);

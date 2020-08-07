@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RateComponent from './rating/rating';
+import { RateComponent } from './rating';
 import * as serviceWorker from './serviceWorker';
 
 import './index.scss';
