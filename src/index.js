@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import Rating from './rating/rating';
+import RateComponent from './rating/rating';
 import * as serviceWorker from './serviceWorker';
+
+import './index.scss';
 
 /**
      * Set the rating value on the form
@@ -38,19 +39,17 @@ const
 let rating = 0;
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Rating
-            name='Rating block'
-            value={rating}
-            errors={[]}
-            loading={false}
-            setRatingValue={setRatingValue}
-            onSubmit={onSubmit}
-            form={form}
-            page={page}
-            enabled
-        />
-    </React.StrictMode>,
+    <RateComponent
+        name='Rating block'
+        value={rating}
+        errors={[]}
+        loading={false}
+        setRatingValue={setRatingValue}
+        onSubmit={onSubmit}
+        form={form}
+        page={page}
+        enabled
+    />,
     document.getElementById('root')
 );
 

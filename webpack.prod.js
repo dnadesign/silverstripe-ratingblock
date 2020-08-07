@@ -3,6 +3,7 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const common = require('./webpack.common.js');
 const pkg = require('./package.json');
 const libraryName = pkg.name;
@@ -38,6 +39,7 @@ module.exports = merge(common, {
         ]
     },
     plugins: [
+        new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: 'dist/*.*'
         }),
@@ -52,7 +54,9 @@ module.exports = merge(common, {
     resolve: {
         alias: {
             'react': path.resolve(__dirname, './node_modules/react'),
-            'react-dom': path.resolve(__dirname, './node_modules/react-dom')
+            'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
+            '@material-ui/core': path.resolve(__dirname, './node_modules/@material-ui/core'),
+            '@material-ui/lab': path.resolve(__dirname, './node_modules/@material-ui/lab'),
         }
     },
     externals: {
@@ -68,6 +72,8 @@ module.exports = merge(common, {
             commonjs2: "react-dom",
             amd: "ReactDOM",
             root: "ReactDOM"
-        }
+        },
+        "@material-ui/core": {},
+        "@material-ui/lab": {}
     }
 });

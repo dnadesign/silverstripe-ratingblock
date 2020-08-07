@@ -3,7 +3,7 @@
 /* eslint-disable one-var */
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import MaterialRating from '@material-ui/lab/Rating';
+import { Rating } from '@material-ui/lab';
 import classNames from 'classnames';
 import Loading from '../loading/loading';
 
@@ -25,7 +25,7 @@ const Star = (props) => {
     );
 };
 
-class Rating extends Component {
+class RateComponent extends Component {
     constructor(props) {
         super(props);
 
@@ -129,7 +129,7 @@ class Rating extends Component {
         const { errors, form } = this.props;
 
         return <div className='rating__stars'>
-            <MaterialRating
+            <Rating
                 name={`rating-${this.props.name}`}
                 emptyIcon={<Star stroke='#fff' />}
                 icon={<Star stroke='#fff' fill='#fff' />}
@@ -266,4 +266,4 @@ class Rating extends Component {
     }
 }
 
-export default Rating;
+export default RateComponent;

@@ -34,6 +34,41 @@
                 "regenerator": true,
                 "useESModules": false
             }
+        ],
+        [
+            "babel-plugin-import",
+            {
+                "libraryName": "@material-ui/core",
+                // Use ""libraryDirectory": ""," if your bundler does not support ES modules
+                "libraryDirectory": "esm",
+                "camel2DashComponentName": false
+            },
+            "core"
+        ],
+        [
+            "babel-plugin-import",
+            {
+                "libraryName": "@material-ui/lab",
+                // Use ""libraryDirectory": ""," if your bundler does not support ES modules
+                "libraryDirectory": "",
+                "camel2DashComponentName": false
+            },
+            "lab"
+        ],
+        [
+            "babel-plugin-transform-imports",
+            {
+                "@material-ui/core": {
+                    // Use "transform: "@material-ui/core/${member}"," if your bundler does not support ES modules
+                    "transform": "@material-ui/core/esm/${member}",
+                    "preventFullImport": true
+                },
+                "@material-ui/lab": {
+                    // Use "transform: "@material-ui/icons/${member}"," if your bundler does not support ES modules
+                    "transform": "@material-ui/lab/${member}",
+                    "preventFullImport": true
+                }
+            }
         ]
         // [
         //     "css-modules-transform",
