@@ -59,21 +59,24 @@ module.exports = merge(common, {
             '@material-ui/lab': path.resolve(__dirname, './node_modules/@material-ui/lab'),
         }
     },
-    externals: {
-        // Don't bundle react or react-dom
-        react: {
-            commonjs: "react",
-            commonjs2: "react",
-            amd: "React",
-            root: "React"
+    externals: [
+        {
+            // Don't bundle react or react-dom
+            react: {
+                commonjs: "react",
+                commonjs2: "react",
+                amd: "React",
+                root: "React"
+            },
+            "react-dom": {
+                commonjs: "react-dom",
+                commonjs2: "react-dom",
+                amd: "ReactDOM",
+                root: "ReactDOM"
+            },
         },
-        "react-dom": {
-            commonjs: "react-dom",
-            commonjs2: "react-dom",
-            amd: "ReactDOM",
-            root: "ReactDOM"
-        },
-        "@material-ui/core": {},
-        "@material-ui/lab": {}
-    }
+        /@material-ui\/.*/,
+        /@material-ui\/core\/.*/,
+        /@material-ui\/lab\/.*/,
+    ]
 });
