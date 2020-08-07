@@ -18,7 +18,7 @@ const Loading = props => {
             setShow(true);
         }, 750);
         return () => clearTimeout(timer);
-    }, []);
+    }, [props]);
 
     return (
         <div className={`loading ${classes || ''}`}>

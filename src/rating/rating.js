@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 import MaterialRating from '@material-ui/lab/Rating';
 import classNames from 'classnames';
 import Loading from '../loading/loading';
-import { TextField } from '@material-ui/core';
 
 import './sass/rating.scss';
 
