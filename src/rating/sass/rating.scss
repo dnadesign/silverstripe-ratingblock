@@ -82,6 +82,28 @@
 
     &__stars {
         padding: 20px 0 0;
+
+        p {
+            color: #FFF;
+            min-height: 1em;
+        }
+    }
+
+    &__tags {
+        .MuiChip-root {
+            color: #FFF;
+            border-color: #FFF;
+
+            &:hover {
+                background-color: #FFF;
+                color: #000;
+            }
+        }
+
+        .MuiChip-clickable.MuiChip-outlined:hover {
+            background-color: #FFF;
+            color: #000;
+        }
     }
 
     &__comments-outer {

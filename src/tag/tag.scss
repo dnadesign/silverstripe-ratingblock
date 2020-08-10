@@ -1,0 +1,28 @@
+.tag__item {
+    display: inline-block;
+
+    input {
+        display: none;
+
+        &:checked+label {
+            background-color: #FFF;
+            color: #000;
+        }
+    }
+
+    label {
+        position: relative;
+        display: inline-block;
+        padding: 0.75em;
+        margin: 0 0.5em;
+        color: #fff;
+        border: 1px solid;
+        cursor: pointer;
+        transition: .25s ease;
+
+        &:hover {
+            background-color: #FFF;
+            color: #000;
+        }
+    }
+}

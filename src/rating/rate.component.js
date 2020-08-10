@@ -4,11 +4,12 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Rating } from '@material-ui/lab';
-import Chip from '@material-ui/core/Chip';
+import { Chip } from '@material-ui/core';
 import classNames from 'classnames';
 import Loading from '../loading/loading';
 
 import './sass/rating.scss';
+import Tag from '../tag/tag';
 
 /**
  * custom star svg as thje m,aterial ones had too thick stroke
@@ -141,6 +142,7 @@ class RateComponent extends Component {
                 onChange={(event, newValue) => {
                     this.props.setRatingValue(newValue);
                     this.setState({ value: newValue });
+                    this.setState({ tags: '' });
                     this.renderTags();
                 }}
                 onChangeActive={(event, newHover) => {
@@ -160,19 +162,20 @@ class RateComponent extends Component {
 
         return (this.state.value > 0 && stars) && (
             <div className='rating__tags'>
-                <fieldset>
-                    {
-                        Object.values(stars.Tags[this.state.value]).forEach((tag) => {
-                            return <Chip
-                                size='medium'
-                                label={tag}
-                                onClck={() => { this.setState({ tags: [tags, tag].join(',') }) }}
-                                variant='outlined'
-                            />;
-                        })
-                    }
-                    <input type='hidden' name={`input_tags`} id={`input_tags`} value={this.state.tags} />
-                </fieldset>
+                {
+                    Object.values(stars.Tags[this.state.value - 1]).map((tag) => {
+                        return <Tag
+                            key={`tag_${tag}`}
+                            label={tag}
+                            onChange={(e) => {
+                                e.currentTarget.checked && this.setState({
+                                    tags: this.state.tags + tag + ','
+                                });
+                            }}
+                        />;
+                    })
+                }
+                <input type='hidden' name='input_tags' id='input_tags' value={this.state.tags} />
             </div>
         );
     }

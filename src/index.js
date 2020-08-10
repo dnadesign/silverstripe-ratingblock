@@ -34,6 +34,17 @@ const
     page = {
         id: 1,
         name: 'Rating block'
+    },
+    stars = {
+        Labels: { 1: 'nah', 2: 'meh', 3: 'ok', 4: 'woop', 5: 'wow' },
+        Max: 5,
+        Tags: [
+            { 1: 'nah', 2: 'extremely nah', 3: 'very nah' },
+            { 1: 'meh', 2: 'very meh', 3: 'extremely meh' },
+            { 1: 'ok', 2: 'very ok', 3: 'extremely ok' },
+            { 1: 'woop woop', 2: 'very woop woop', 3: 'extremely woop woop' },
+            { 1: 'wow', 2: 'very wow', 3: 'extremely wow' }
+        ]
     };
 
 let rating = 0;
@@ -48,6 +59,7 @@ ReactDOM.render(
         onSubmit={onSubmit}
         form={form}
         page={page}
+        stars={stars}
         enabled
     />,
     document.getElementById('root')

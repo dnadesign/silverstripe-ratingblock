@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core/Chip"), require("@material-ui/core"));
+		module.exports = factory(require("react"), require("@material-ui/core"), require("@material-ui/lab"));
 	else if(typeof define === 'function' && define.amd)
-		define("silverstripe-react-ratingblock", ["React", "@material-ui/lab", "@material-ui/core/Chip", "@material-ui/core"], factory);
+		define("silverstripe-react-ratingblock", ["React", "@material-ui/core", "@material-ui/lab"], factory);
 	else if(typeof exports === 'object')
-		exports["silverstripe-react-ratingblock"] = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core/Chip"), require("@material-ui/core"));
+		exports["silverstripe-react-ratingblock"] = factory(require("react"), require("@material-ui/core"), require("@material-ui/lab"));
 	else
-		root["silverstripe-react-ratingblock"] = factory(root["React"], root["@material-ui/lab"], root["@material-ui/core/Chip"], root["@material-ui/core"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__) {
+		root["silverstripe-react-ratingblock"] = factory(root["React"], root["@material-ui/core"], root["@material-ui/lab"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -102,6 +102,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -158,12 +164,6 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
-
-/***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
@@ -171,9 +171,9 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 /* 5 */
@@ -325,14 +325,13 @@ var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_re
 var external_commonjs_react_commonjs2_react_amd_React_root_React_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_react_commonjs2_react_amd_React_root_React_);
 
 // EXTERNAL MODULE: external "@material-ui/lab"
-var lab_ = __webpack_require__(2);
+var lab_ = __webpack_require__(3);
 
-// EXTERNAL MODULE: external "@material-ui/core/Chip"
-var Chip_ = __webpack_require__(3);
-var Chip_default = /*#__PURE__*/__webpack_require__.n(Chip_);
+// EXTERNAL MODULE: external "@material-ui/core"
+var core_ = __webpack_require__(1);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(1);
+var classnames = __webpack_require__(2);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
@@ -433,11 +432,8 @@ function _objectWithoutProperties(source, excluded) {
 
   return target;
 }
-// EXTERNAL MODULE: external "@material-ui/core"
-var core_ = __webpack_require__(4);
-
 // EXTERNAL MODULE: ./src/loading/loading.scss
-var loading_loading = __webpack_require__(5);
+var loading_loading = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./src/loading/loading.js
 
@@ -482,8 +478,43 @@ var loading_Loading = function Loading(props) {
 
 /* harmony default export */ var src_loading_loading = (loading_Loading);
 // EXTERNAL MODULE: ./src/rating/sass/rating.scss
-var sass_rating = __webpack_require__(6);
+var sass_rating = __webpack_require__(5);
 
+// EXTERNAL MODULE: ./src/tag/tag.scss
+var tag_tag = __webpack_require__(6);
+
+// CONCATENATED MODULE: ./src/tag/tag.js
+
+
+
+
+var tag_Tag = function Tag(props) {
+  var label = props.label,
+      onChange = props.onChange,
+      _React$useState = external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.useState(false),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      checked = _React$useState2[0],
+      setChecked = _React$useState2[1];
+
+  return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+    key: "tag__".concat(label),
+    id: "tag__".concat(label),
+    value: label,
+    className: "tag__item"
+  }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
+    id: "tag__input__".concat(label),
+    type: "checkbox",
+    defaultChecked: checked,
+    onChange: onChange,
+    onClick: function onClick() {
+      return setChecked(!checked);
+    }
+  }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("label", {
+    htmlFor: "tag__input__".concat(label)
+  }, label));
+};
+
+/* harmony default export */ var src_tag_tag = (tag_Tag);
 // CONCATENATED MODULE: ./src/rating/rate.component.js
 
 
@@ -497,6 +528,7 @@ var sass_rating = __webpack_require__(6);
 /* eslint-disable one-var */
 
 /* eslint-disable no-unused-vars */
+
 
 
 
@@ -658,6 +690,10 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
             value: newValue
           });
 
+          _this3.setState({
+            tags: ''
+          });
+
           _this3.renderTags();
         },
         onChangeActive: function onChangeActive(event, newHover) {
@@ -678,23 +714,22 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
       var stars = this.props.stars;
       return this.state.value > 0 && stars && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__tags"
-      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("fieldset", null, Object.values(stars.Tags[this.state.value]).forEach(function (tag) {
-        return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Chip_default.a, {
-          size: "medium",
+      }, Object.values(stars.Tags[this.state.value - 1]).map(function (tag) {
+        return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(src_tag_tag, {
+          key: "tag_".concat(tag),
           label: tag,
-          onClck: function onClck() {
-            _this4.setState({
-              tags: [tags, tag].join(',')
+          onChange: function onChange(e) {
+            e.currentTarget.checked && _this4.setState({
+              tags: _this4.state.tags + tag + ','
             });
-          },
-          variant: "outlined"
+          }
         });
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
         type: "hidden",
         name: "input_tags",
         id: "input_tags",
         value: this.state.tags
-      })));
+      }));
     }
     /**
      * Render Submit button
