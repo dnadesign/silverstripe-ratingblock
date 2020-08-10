@@ -160,7 +160,7 @@ class RateComponent extends Component {
         return <div className='rating__tags'>
             <fieldset>
                 {
-                    this.stars.Tags.forEach((element, index) => {
+                    stars && stars.Tags.forEach((element, index) => {
                         const labelValue = element[index + 1];
                         return <Chip
                             size='medium'

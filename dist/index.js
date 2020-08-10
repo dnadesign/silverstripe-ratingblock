@@ -676,7 +676,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
       var stars = this.props.stars;
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__tags"
-      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("fieldset", null, this.stars.Tags.forEach(function (element, index) {
+      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("fieldset", null, stars && stars.Tags.forEach(function (element, index) {
         var labelValue = element[index + 1];
         return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Chip_default.a, {
           size: "medium",
