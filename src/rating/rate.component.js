@@ -162,7 +162,7 @@ class RateComponent extends Component {
             <div className='rating__tags'>
                 <fieldset>
                     {
-                        stars.Tags[this.state.value].each((element, index) => {
+                        Object.values(stars.Tags[this.state.value]).forEach((element, index) => {
                             const labelValue = element[index + 1];
                             return <Chip
                                 size='medium'
