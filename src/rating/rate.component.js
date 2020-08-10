@@ -141,6 +141,7 @@ class RateComponent extends Component {
                 onChange={(event, newValue) => {
                     this.props.setRatingValue(newValue);
                     this.setState({ value: newValue });
+                    this.renderTags();
                 }}
                 onChangeActive={(event, newHover) => {
                     this.setState({ hover: newHover });
@@ -157,22 +158,24 @@ class RateComponent extends Component {
     renderTags() {
         const { stars } = this.props;
 
-        return <div className='rating__tags'>
-            <fieldset>
-                {
-                    this.state.value > 0 && stars && stars.Tags[this.state.value].forEach((element, index) => {
-                        const labelValue = element[index + 1];
-                        return <Chip
-                            size='medium'
-                            label={labelValue}
-                            onClck={() => { this.setState({ tags: [tags, labelValue].join(',') }) }}
-                            variant='outlined'
-                        />;
-                    })
-                }
-                <input type='hidden' name={`input_tags`} id={`input_tags`} value={this.state.tags} />
-            </fieldset>
-        </div>
+        return (this.state.value > 0 && stars) && (
+            <div className='rating__tags'>
+                <fieldset>
+                    {
+                        stars.Tags[this.state.value].forEach((element, index) => {
+                            const labelValue = element[index + 1];
+                            return <Chip
+                                size='medium'
+                                label={labelValue}
+                                onClck={() => { this.setState({ tags: [tags, labelValue].join(',') }) }}
+                                variant='outlined'
+                            />;
+                        })
+                    }
+                    <input type='hidden' name={`input_tags`} id={`input_tags`} value={this.state.tags} />
+                </fieldset>
+            </div>
+        );
     }
 
     /**
