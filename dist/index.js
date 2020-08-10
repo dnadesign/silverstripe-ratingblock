@@ -529,6 +529,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         previouslyRated = rating > 0;
     _this.state = {
       value: rating,
+      hover: -1,
       comments: _this.props.form.comments.value,
       expanded: _this.props.form.comments.expanded,
       previouslyRated: previouslyRated
@@ -623,7 +624,8 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
 
       var _this$props = this.props,
           errors = _this$props.errors,
-          form = _this$props.form;
+          form = _this$props.form,
+          stars = _this$props.stars;
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__stars"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(lab_["Rating"], {
@@ -636,6 +638,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           fill: "#fff"
         }),
         value: parseInt(this.state.value, 10),
+        max: stars.Max,
         onChange: function onChange(event, newValue) {
           _this3.props.setRatingValue(newValue);
 
@@ -643,8 +646,13 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
             value: newValue
           });
         },
+        onChangeActive: function onChangeActive(event, newHover) {
+          _this3.setState({
+            hover: newHover
+          });
+        },
         disabled: disabled || form.submitted
-      }), errors['rating'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+      }), this.state.value !== null && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]), errors['rating'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, "Please select a rating"));
     }

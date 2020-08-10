@@ -40,6 +40,7 @@ class RateComponent extends Component {
 
         this.state = {
             value: rating,
+            hover: -1,
             comments: this.props.form.comments.value,
             expanded: this.props.form.comments.expanded,
             previouslyRated: previouslyRated
@@ -126,7 +127,7 @@ class RateComponent extends Component {
      * Render stars
      */
     renderStars(disabled) {
-        const { errors, form } = this.props;
+        const { errors, form, stars } = this.props;
 
         return <div className='rating__stars'>
             <Rating
@@ -134,12 +135,17 @@ class RateComponent extends Component {
                 emptyIcon={<Star stroke='#fff' />}
                 icon={<Star stroke='#fff' fill='#fff' />}
                 value={parseInt(this.state.value, 10)}
+                max={stars.Max}
                 onChange={(event, newValue) => {
                     this.props.setRatingValue(newValue);
                     this.setState({ value: newValue });
                 }}
+                onChangeActive={(event, newHover) => {
+                    this.setState({ hover: newHover });
+                }}
                 disabled={disabled || form.submitted}
             />
+            {this.state.value !== null && <p>{stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]}</p>}
             {errors['rating'] && (
                 <p className='rating__error'>Please select a rating</p>
             )}
