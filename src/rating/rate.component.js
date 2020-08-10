@@ -4,6 +4,7 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Rating } from '@material-ui/lab';
+import Chip from '@material-ui/core/Chip';
 import classNames from 'classnames';
 import Loading from '../loading/loading';
 
@@ -41,6 +42,7 @@ class RateComponent extends Component {
         this.state = {
             value: rating,
             hover: -1,
+            tags: '',
             comments: this.props.form.comments.value,
             expanded: this.props.form.comments.expanded,
             previouslyRated: previouslyRated
@@ -152,6 +154,27 @@ class RateComponent extends Component {
         </div>;
     }
 
+    renderTags() {
+        const { stars } = this.props;
+
+        return <div className='rating__tags'>
+            <fieldset>
+                {
+                    this.stars.Tags.forEach((element, index) => {
+                        const labelValue = element[index + 1];
+                        return <Chip
+                            size='medium'
+                            label={labelValue}
+                            onClck={() => { this.setState({ tags: [tags, labelValue].join(',') }) }}
+                            variant='outlined'
+                        />;
+                    })
+                }
+                <input type='hidden' name={`input_tags`} id={`input_tags`} value={this.state.tags} />
+            </fieldset>
+        </div>
+    }
+
     /**
      * Render Submit button
      */
@@ -258,6 +281,7 @@ class RateComponent extends Component {
                             {this.renderTitle()}
                             {this.renderIntro(loading, form.submitted)}
                             {this.renderStars(disabled)}
+                            {this.renderTags()}
 
                             {!this.state.previouslyRated && (
                                 <>

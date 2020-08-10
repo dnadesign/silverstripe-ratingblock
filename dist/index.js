@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core"));
+		module.exports = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core/Chip"), require("@material-ui/core"));
 	else if(typeof define === 'function' && define.amd)
-		define("silverstripe-react-ratingblock", ["React", "@material-ui/lab", "@material-ui/core"], factory);
+		define("silverstripe-react-ratingblock", ["React", "@material-ui/lab", "@material-ui/core/Chip", "@material-ui/core"], factory);
 	else if(typeof exports === 'object')
-		exports["silverstripe-react-ratingblock"] = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core"));
+		exports["silverstripe-react-ratingblock"] = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core/Chip"), require("@material-ui/core"));
 	else
-		root["silverstripe-react-ratingblock"] = factory(root["React"], root["@material-ui/lab"], root["@material-ui/core"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__) {
+		root["silverstripe-react-ratingblock"] = factory(root["React"], root["@material-ui/lab"], root["@material-ui/core/Chip"], root["@material-ui/core"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -171,9 +171,9 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 /* 5 */
@@ -183,6 +183,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -321,6 +327,10 @@ var external_commonjs_react_commonjs2_react_amd_React_root_React_default = /*#__
 // EXTERNAL MODULE: external "@material-ui/lab"
 var lab_ = __webpack_require__(2);
 
+// EXTERNAL MODULE: external "@material-ui/core/Chip"
+var Chip_ = __webpack_require__(3);
+var Chip_default = /*#__PURE__*/__webpack_require__.n(Chip_);
+
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(1);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
@@ -424,10 +434,10 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 // EXTERNAL MODULE: external "@material-ui/core"
-var core_ = __webpack_require__(3);
+var core_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: ./src/loading/loading.scss
-var loading_loading = __webpack_require__(4);
+var loading_loading = __webpack_require__(5);
 
 // CONCATENATED MODULE: ./src/loading/loading.js
 
@@ -472,7 +482,7 @@ var loading_Loading = function Loading(props) {
 
 /* harmony default export */ var src_loading_loading = (loading_Loading);
 // EXTERNAL MODULE: ./src/rating/sass/rating.scss
-var sass_rating = __webpack_require__(5);
+var sass_rating = __webpack_require__(6);
 
 // CONCATENATED MODULE: ./src/rating/rate.component.js
 
@@ -487,6 +497,7 @@ var sass_rating = __webpack_require__(5);
 /* eslint-disable one-var */
 
 /* eslint-disable no-unused-vars */
+
 
 
 
@@ -530,6 +541,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     _this.state = {
       value: rating,
       hover: -1,
+      tags: '',
       comments: _this.props.form.comments.value,
       expanded: _this.props.form.comments.expanded,
       previouslyRated: previouslyRated
@@ -656,6 +668,33 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         className: "rating__error"
       }, "Please select a rating"));
     }
+  }, {
+    key: "renderTags",
+    value: function renderTags() {
+      var _this4 = this;
+
+      var stars = this.props.stars;
+      return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+        className: "rating__tags"
+      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("fieldset", null, this.stars.Tags.forEach(function (element, index) {
+        var labelValue = element[index + 1];
+        return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Chip_default.a, {
+          size: "medium",
+          label: labelValue,
+          onClck: function onClck() {
+            _this4.setState({
+              tags: [tags, labelValue].join(',')
+            });
+          },
+          variant: "outlined"
+        });
+      }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
+        type: "hidden",
+        name: "input_tags",
+        id: "input_tags",
+        value: this.state.tags
+      })));
+    }
     /**
      * Render Submit button
      */
@@ -663,7 +702,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
   }, {
     key: "renderSubmit",
     value: function renderSubmit(disabled) {
-      var _this4 = this;
+      var _this5 = this;
 
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
         type: "hidden",
@@ -680,7 +719,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         "aria-disabled": disabled,
         disabled: disabled,
         onClick: function onClick(e) {
-          _this4.props.onSubmit(e);
+          _this5.props.onSubmit(e);
         }
       }, "Submit"));
     }
@@ -758,7 +797,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         className: "rating__message"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, "An errors occurred", /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("br", null), "Please try again later")) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("form", {
         className: "rating__form"
-      }, this.renderTitle(), this.renderIntro(loading, form.submitted), this.renderStars(disabled), !this.state.previouslyRated && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, this.renderComments(disabled, form.submitted), this.renderSubmit(disabled))));
+      }, this.renderTitle(), this.renderIntro(loading, form.submitted), this.renderStars(disabled), this.renderTags(), !this.state.previouslyRated && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, this.renderComments(disabled, form.submitted), this.renderSubmit(disabled))));
     }
   }]);
 
