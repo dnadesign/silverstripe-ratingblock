@@ -165,7 +165,7 @@ class RateComponent extends Component {
                         Object.values(stars.Tags[this.state.value]).forEach((tag) => {
                             return <Chip
                                 size='medium'
-                                label={labelValue}
+                                label={tag}
                                 onClck={() => { this.setState({ tags: [tags, tag].join(',') }) }}
                                 variant='outlined'
                             />;

@@ -678,14 +678,13 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
       var stars = this.props.stars;
       return this.state.value > 0 && stars && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__tags"
-      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("fieldset", null, Object.values(stars.Tags[this.state.value]).forEach(function (element, index) {
-        var labelValue = element[index + 1];
+      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("fieldset", null, Object.values(stars.Tags[this.state.value]).forEach(function (tag) {
         return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(Chip_default.a, {
           size: "medium",
-          label: labelValue,
+          label: tag,
           onClck: function onClck() {
             _this4.setState({
-              tags: [tags, labelValue].join(',')
+              tags: [tags, tag].join(',')
             });
           },
           variant: "outlined"
