@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("@material-ui/core"), require("@material-ui/lab"));
+		module.exports = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core"));
 	else if(typeof define === 'function' && define.amd)
-		define("silverstripe-react-ratingblock", ["React", "@material-ui/core", "@material-ui/lab"], factory);
+		define("silverstripe-react-ratingblock", ["React", "@material-ui/lab", "@material-ui/core"], factory);
 	else if(typeof exports === 'object')
-		exports["silverstripe-react-ratingblock"] = factory(require("react"), require("@material-ui/core"), require("@material-ui/lab"));
+		exports["silverstripe-react-ratingblock"] = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core"));
 	else
-		root["silverstripe-react-ratingblock"] = factory(root["React"], root["@material-ui/core"], root["@material-ui/lab"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__1__, __WEBPACK_EXTERNAL_MODULE__3__) {
+		root["silverstripe-react-ratingblock"] = factory(root["React"], root["@material-ui/lab"], root["@material-ui/core"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -102,12 +102,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -164,6 +158,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__2__;
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
@@ -199,6 +199,47 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, "RateComponent", function() { return /* reexport */ rate_component; });
 __webpack_require__.d(__webpack_exports__, "default", function() { return /* reexport */ rate_component; });
 
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithoutHoles.js
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return _arrayLikeToArray(arr);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/iterableToArray.js
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/toConsumableArray.js
+
+
+
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
+}
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/classCallCheck.js
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -220,6 +261,14 @@ function _createClass(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties(Constructor, staticProps);
   return Constructor;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
 }
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
 function _setPrototypeOf(o, p) {
@@ -282,14 +331,6 @@ function _typeof(obj) {
 
   return _typeof(obj);
 }
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/possibleConstructorReturn.js
 
 
@@ -325,13 +366,10 @@ var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_re
 var external_commonjs_react_commonjs2_react_amd_React_root_React_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_react_commonjs2_react_amd_React_root_React_);
 
 // EXTERNAL MODULE: external "@material-ui/lab"
-var lab_ = __webpack_require__(3);
-
-// EXTERNAL MODULE: external "@material-ui/core"
-var core_ = __webpack_require__(1);
+var lab_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
-var classnames = __webpack_require__(2);
+var classnames = __webpack_require__(1);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
@@ -364,26 +402,6 @@ function _iterableToArrayLimit(arr, i) {
   }
 
   return _arr;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
 }
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/nonIterableRest.js
 function _nonIterableRest() {
@@ -432,10 +450,13 @@ function _objectWithoutProperties(source, excluded) {
 
   return target;
 }
-// EXTERNAL MODULE: ./src/loading/loading.scss
+// EXTERNAL MODULE: external "@material-ui/core"
+var core_ = __webpack_require__(3);
+
+// EXTERNAL MODULE: ./src/components/loading/loading.scss
 var loading_loading = __webpack_require__(4);
 
-// CONCATENATED MODULE: ./src/loading/loading.js
+// CONCATENATED MODULE: ./src/components/loading/loading.js
 
 
 
@@ -476,14 +497,31 @@ var loading_Loading = function Loading(props) {
   }, "Please wait"));
 };
 
-/* harmony default export */ var src_loading_loading = (loading_Loading);
-// EXTERNAL MODULE: ./src/rating/sass/rating.scss
-var sass_rating = __webpack_require__(5);
+/* harmony default export */ var components_loading_loading = (loading_Loading);
+// CONCATENATED MODULE: ./src/components/star/star.js
 
-// EXTERNAL MODULE: ./src/tag/tag.scss
-var tag_tag = __webpack_require__(6);
+/**
+ * custom star svg as thje m,aterial ones had too thick stroke
+ */
 
-// CONCATENATED MODULE: ./src/tag/tag.js
+var star_Star = function Star(props) {
+  return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("svg", {
+    width: "100%",
+    height: "100%",
+    viewBox: "0 0 21 20"
+  }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("path", {
+    d: "M18.7801293,8.27466498 L12.8268001,7.76130418 L10.5003474,2.28047975 L8.17320044,7.77122151 L2.22308341,8.27602977 L6.74248862,12.1911922 L5.38513229,18.0096159 L10.5,14.922487 L15.6167758,18.0107676 L14.267429,12.1911921 L18.7801293,8.27466498 Z",
+    stroke: props.stroke ? props.stroke : '#fff',
+    strokeWidth: "0.75px",
+    fill: props.fill ? props.fill : 'none'
+  }));
+};
+
+/* harmony default export */ var star = (star_Star);
+// EXTERNAL MODULE: ./src/components/tag/tag.scss
+var tag_tag = __webpack_require__(5);
+
+// CONCATENATED MODULE: ./src/components/tag/tag.js
 
 
 
@@ -514,8 +552,13 @@ var tag_Tag = function Tag(props) {
   }, label));
 };
 
-/* harmony default export */ var src_tag_tag = (tag_Tag);
-// CONCATENATED MODULE: ./src/rating/rate.component.js
+/* harmony default export */ var components_tag_tag = (tag_Tag);
+// EXTERNAL MODULE: ./src/components/rating/sass/rating.scss
+var sass_rating = __webpack_require__(6);
+
+// CONCATENATED MODULE: ./src/components/rating/rate.component.js
+
+
 
 
 
@@ -535,22 +578,6 @@ var tag_Tag = function Tag(props) {
 
 
 
-/**
- * custom star svg as thje m,aterial ones had too thick stroke
- */
-
-var rate_component_Star = function Star(props) {
-  return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("svg", {
-    width: "100%",
-    height: "100%",
-    viewBox: "0 0 21 20"
-  }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("path", {
-    d: "M18.7801293,8.27466498 L12.8268001,7.76130418 L10.5003474,2.28047975 L8.17320044,7.77122151 L2.22308341,8.27602977 L6.74248862,12.1911922 L5.38513229,18.0096159 L10.5,14.922487 L15.6167758,18.0107676 L14.267429,12.1911921 L18.7801293,8.27466498 Z",
-    stroke: props.stroke ? props.stroke : '#fff',
-    strokeWidth: "0.75px",
-    fill: props.fill ? props.fill : 'none'
-  }));
-};
 
 var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
   _inherits(RateComponent, _Component);
@@ -573,11 +600,13 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     _this.state = {
       value: rating,
       hover: -1,
-      tags: '',
+      tags: [],
       comments: _this.props.form.comments.value,
       expanded: _this.props.form.comments.expanded,
       previouslyRated: previouslyRated
-    };
+    }; // this.renderTags = this.renderTags.bind(this);
+
+    _this.handleTagChange = _this.handleTagChange.bind(_assertThisInitialized(_this));
     return _this;
   }
   /**
@@ -587,8 +616,8 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
 
   _createClass(RateComponent, [{
     key: "setExpand",
-    value: function setExpand(e) {
-      e.preventDefault();
+    value: function setExpand(e, prevent) {
+      prevent && e.preventDefault();
       this.setState({
         expanded: !this.state.expanded
       });
@@ -618,19 +647,21 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         'rating__comments': true,
         'rating__comments--expanded': this.state.expanded
       }),
-          errors = this.props.errors;
+          _this$props = this.props,
+          errors = _this$props.errors,
+          stars = _this$props.stars;
       return this.props.form.comments.enabled && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__comments-outer"
-      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
+      }, stars.Tags.length === 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
         className: "rating__comments-toggle",
         onClick: function onClick(e) {
-          return _this2.setExpand(e);
+          return _this2.setExpand(e, true);
         },
         "aria-controls": "ratingcomments",
         "aria-expanded": this.state.expanded,
         id: "rating_commnets_expand",
         disabled: disabled || submitted
-      }, "Add a comment"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      }, " Add a comment "), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: commentsClasses,
         id: "ratingcomments",
         "aria-hidden": !this.state.expanded,
@@ -666,18 +697,18 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     value: function renderStars(disabled) {
       var _this3 = this;
 
-      var _this$props = this.props,
-          errors = _this$props.errors,
-          form = _this$props.form,
-          stars = _this$props.stars;
-      return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      var _this$props2 = this.props,
+          errors = _this$props2.errors,
+          form = _this$props2.form,
+          stars = _this$props2.stars;
+      return stars && stars.Max > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__stars"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(lab_["Rating"], {
         name: "rating-".concat(this.props.name),
-        emptyIcon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(rate_component_Star, {
+        emptyIcon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(star, {
           stroke: "#fff"
         }),
-        icon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(rate_component_Star, {
+        icon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(star, {
           stroke: "#fff",
           fill: "#fff"
         }),
@@ -702,26 +733,55 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           });
         },
         disabled: disabled || form.submitted
-      }), this.state.value !== null && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]), errors['rating'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+      }), this.state.value !== null && stars.Labels && Object.keys(stars.Labels).length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]), errors['rating'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, "Please select a rating"));
     }
   }, {
-    key: "renderTags",
-    value: function renderTags() {
+    key: "handleTagChange",
+    value: function handleTagChange(e, tag) {
       var _this4 = this;
 
+      if (e.currentTarget.checked) {
+        this.setState({
+          tags: [].concat(_toConsumableArray(this.state.tags), [tag])
+        }, function () {
+          !_this4.state.expanded && _this4.setExpand(e, false);
+
+          _this4.props.setTagsValue(_toConsumableArray(_this4.state.tags).join(','));
+        });
+      } else {
+        var copy = _toConsumableArray(this.state.tags);
+
+        var index = copy.indexOf(tag);
+
+        if (index > -1) {
+          copy.splice(index, 1);
+          this.setState({
+            tags: copy
+          }, function () {
+            _this4.state.tags.length === 0 && _this4.setExpand(e, false);
+
+            _this4.props.setTagsValue(copy.join(','));
+          });
+        } // this.state.tags.length === 0 && this.setExpand(e, false);
+
+      }
+    }
+  }, {
+    key: "renderTags",
+    value: function renderTags() {
+      var _this5 = this;
+
       var stars = this.props.stars;
-      return this.state.value > 0 && stars && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      return this.state.value > 0 && stars && stars.Tags.length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__tags"
       }, Object.values(stars.Tags[this.state.value - 1]).map(function (tag) {
-        return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(src_tag_tag, {
+        return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_tag_tag, {
           key: "tag_".concat(tag),
           label: tag,
           onChange: function onChange(e) {
-            e.currentTarget.checked && _this4.setState({
-              tags: _this4.state.tags + tag + ','
-            });
+            return _this5.handleTagChange(e, tag);
           }
         });
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
@@ -738,7 +798,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
   }, {
     key: "renderSubmit",
     value: function renderSubmit(disabled) {
-      var _this5 = this;
+      var _this6 = this;
 
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
         type: "hidden",
@@ -755,7 +815,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         "aria-disabled": disabled,
         disabled: disabled,
         onClick: function onClick(e) {
-          _this5.props.onSubmit(e);
+          _this6.props.onSubmit(e);
         }
       }, "Submit"));
     }
@@ -764,7 +824,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     value: function renderIntro(loading, submitted) {
       return loading ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__loading"
-      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(src_loading_loading, {
+      }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_loading_loading, {
         id: "rating-loading",
         showImmediately: true
       })) : submitted ?
@@ -811,11 +871,11 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         });
       }
 
-      var _this$props2 = this.props,
-          name = _this$props2.name,
-          errors = _this$props2.errors,
-          loading = _this$props2.loading,
-          form = _this$props2.form,
+      var _this$props3 = this.props,
+          name = _this$props3.name,
+          errors = _this$props3.errors,
+          loading = _this$props3.loading,
+          form = _this$props3.form,
           disabled = this.state.previouslyRated || loading || form.submitted,
           classes = classnames_default()({
         'rating': true,
@@ -841,7 +901,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
 }(external_commonjs_react_commonjs2_react_amd_React_root_React_["Component"]);
 
 /* harmony default export */ var rate_component = (rate_component_RateComponent);
-// CONCATENATED MODULE: ./src/rating/index.js
+// CONCATENATED MODULE: ./src/components/rating/index.js
 
 
 
