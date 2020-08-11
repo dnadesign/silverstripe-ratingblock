@@ -529,20 +529,27 @@ var tag_tag = __webpack_require__(5);
 var tag_Tag = function Tag(props) {
   var label = props.label,
       onChange = props.onChange,
+      disabled = props.disabled,
+      active = props.active,
       _React$useState = external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.useState(false),
       _React$useState2 = _slicedToArray(_React$useState, 2),
       checked = _React$useState2[0],
       setChecked = _React$useState2[1];
 
+  external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.useEffect(function () {
+    if (props.active) {
+      setChecked(true);
+    }
+  }, [props.active]);
   return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
     key: "tag__".concat(label),
     id: "tag__".concat(label),
     value: label,
-    className: "tag__item"
+    className: "tag__item ".concat(disabled && 'tag__disabled')
   }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
     id: "tag__input__".concat(label),
     type: "checkbox",
-    defaultChecked: checked,
+    defaultChecked: disabled ? active : checked,
     onChange: onChange,
     onClick: function onClick() {
       return setChecked(!checked);
@@ -699,7 +706,6 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
 
       var _this$props2 = this.props,
           errors = _this$props2.errors,
-          form = _this$props2.form,
           stars = _this$props2.stars;
       return stars && stars.Max > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__stars"
@@ -732,7 +738,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
             hover: newHover
           });
         },
-        disabled: disabled || form.submitted
+        disabled: disabled
       }), this.state.value !== null && stars.Labels && Object.keys(stars.Labels).length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]), errors['rating'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, "Please select a rating"));
@@ -769,16 +775,22 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "renderTags",
-    value: function renderTags() {
+    value: function renderTags(disabled) {
       var _this5 = this;
 
-      var stars = this.props.stars;
+      var _this$props3 = this.props,
+          stars = _this$props3.stars,
+          form = _this$props3.form;
+      var tagList = form.tags && form.tags.split(',');
       return this.state.value > 0 && stars && stars.Tags && stars.Tags.length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__tags"
       }, Object.values(stars.Tags[this.state.value - 1]).map(function (tag) {
+        var checked = tagList.includes(tag);
         return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_tag_tag, {
           key: "tag_".concat(tag),
           label: tag,
+          active: checked,
+          disabled: disabled,
           onChange: function onChange(e) {
             return _this5.handleTagChange(e, tag);
           }
@@ -870,11 +882,11 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         });
       }
 
-      var _this$props3 = this.props,
-          name = _this$props3.name,
-          errors = _this$props3.errors,
-          loading = _this$props3.loading,
-          form = _this$props3.form,
+      var _this$props4 = this.props,
+          name = _this$props4.name,
+          errors = _this$props4.errors,
+          loading = _this$props4.loading,
+          form = _this$props4.form,
           disabled = this.state.previouslyRated || loading || form.submitted,
           classes = classnames_default()({
         'rating': true,
@@ -892,7 +904,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         className: "rating__message"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, "An errors occurred", /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("br", null), "Please try again later")) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("form", {
         className: "rating__form"
-      }, this.renderTitle(), this.renderIntro(loading, form.submitted), this.renderStars(disabled), this.renderTags(), !this.state.previouslyRated && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, this.renderComments(disabled, form.submitted), this.renderSubmit(disabled))));
+      }, this.renderTitle(), this.renderIntro(loading, form.submitted), this.renderStars(disabled), this.renderTags(disabled), !this.state.previouslyRated && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, this.renderComments(disabled, form.submitted), this.renderSubmit(disabled))));
     }
   }]);
 

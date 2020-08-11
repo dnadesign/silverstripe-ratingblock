@@ -117,7 +117,7 @@ class RateComponent extends Component {
      * Render stars
      */
     renderStars(disabled) {
-        const { errors, form, stars } = this.props;
+        const { errors, stars } = this.props;
 
         return ((stars && stars.Max > 0) &&
             <div className='rating__stars'>
@@ -136,7 +136,7 @@ class RateComponent extends Component {
                     onChangeActive={(event, newHover) => {
                         this.setState({ hover: newHover });
                     }}
-                    disabled={disabled || form.submitted}
+                    disabled={disabled}
                 />
                 {this.state.value !== null && (stars.Labels && Object.keys(stars.Labels).length > 0) && <p>{stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]}</p>}
                 {errors['rating'] && (
@@ -165,16 +165,20 @@ class RateComponent extends Component {
         }
     }
 
-    renderTags() {
-        const { stars } = this.props;
+    renderTags(disabled) {
+        const { stars, form } = this.props;
+        const tagList = form.tags && form.tags.split(',');
 
         return (this.state.value > 0 && stars && stars.Tags && stars.Tags.length > 0) && (
             <div className='rating__tags'>
                 {
                     Object.values(stars.Tags[this.state.value - 1]).map((tag) => {
+                        const checked = tagList.includes(tag);
                         return <Tag
                             key={`tag_${tag}`}
                             label={tag}
+                            active={checked}
+                            disabled={disabled}
                             onChange={e => this.handleTagChange(e, tag)}
                         />;
                     })
@@ -290,7 +294,7 @@ class RateComponent extends Component {
                             {this.renderTitle()}
                             {this.renderIntro(loading, form.submitted)}
                             {this.renderStars(disabled)}
-                            {this.renderTags()}
+                            {this.renderTags(disabled)}
 
                             {!this.state.previouslyRated && (
                                 <>

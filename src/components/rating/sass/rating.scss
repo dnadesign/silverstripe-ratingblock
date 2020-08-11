@@ -86,6 +86,10 @@
         p {
             color: #FFF;
             min-height: 1em;
+
+            .rating--disabled & {
+                opacity: 0.5;
+            }
         }
     }
 
