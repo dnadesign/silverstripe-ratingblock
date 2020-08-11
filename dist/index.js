@@ -652,7 +652,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           stars = _this$props.stars;
       return this.props.form.comments.enabled && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__comments-outer"
-      }, stars.Tags.length === 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
+      }, stars && stars.Tags && stars.Tags.length === 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
         className: "rating__comments-toggle",
         onClick: function onClick(e) {
           return _this2.setExpand(e, true);
@@ -774,7 +774,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
       var _this5 = this;
 
       var stars = this.props.stars;
-      return this.state.value > 0 && stars && stars.Tags.length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      return this.state.value > 0 && stars && stars.Tags && stars.Tags.length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__tags"
       }, Object.values(stars.Tags[this.state.value - 1]).map(function (tag) {
         return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_tag_tag, {
