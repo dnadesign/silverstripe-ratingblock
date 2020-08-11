@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { RateComponent } from './rating';
+import { RateComponent } from './components/rating';
 import * as serviceWorker from './serviceWorker';
 
 import './index.scss';
 
-/**
-     * Set the rating value on the form
-     *
-     * @param {Int} value
-     */
+let rating = 0;
 const
     setRatingValue = (value) => {
         rating = value;
+    },
+    setCommentsValue = (value) => {
+        console.log(value);
+    },
+    setTagsValue = (value) => {
+        console.log(value);
     },
     onSubmit = (e) => {
         e.preventDefault();
@@ -47,8 +49,6 @@ const
         ]
     };
 
-let rating = 0;
-
 ReactDOM.render(
     <RateComponent
         name='Rating block'
@@ -56,6 +56,8 @@ ReactDOM.render(
         errors={[]}
         loading={false}
         setRatingValue={setRatingValue}
+        setCommentsValue={setCommentsValue}
+        setTagsValue={setTagsValue}
         onSubmit={onSubmit}
         form={form}
         page={page}

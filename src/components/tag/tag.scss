@@ -1,7 +1,7 @@
 .tag__item {
     display: inline-block;
 
-    input {
+    input[type=checkbox] {
         display: none;
 
         &:checked+label {

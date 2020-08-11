@@ -4,28 +4,12 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { Rating } from '@material-ui/lab';
-import { Chip } from '@material-ui/core';
 import classNames from 'classnames';
 import Loading from '../loading/loading';
-
-import './sass/rating.scss';
+import Star from '../star/star';
 import Tag from '../tag/tag';
 
-/**
- * custom star svg as thje m,aterial ones had too thick stroke
- */
-const Star = (props) => {
-    return (
-        <svg width='100%' height='100%' viewBox='0 0 21 20' >
-            <path
-                d='M18.7801293,8.27466498 L12.8268001,7.76130418 L10.5003474,2.28047975 L8.17320044,7.77122151 L2.22308341,8.27602977 L6.74248862,12.1911922 L5.38513229,18.0096159 L10.5,14.922487 L15.6167758,18.0107676 L14.267429,12.1911921 L18.7801293,8.27466498 Z'
-                stroke={props.stroke ? props.stroke : '#fff'}
-                strokeWidth='0.75px'
-                fill={props.fill ? props.fill : 'none'}
-            />
-        </svg>
-    );
-};
+import './sass/rating.scss';
 
 class RateComponent extends Component {
     constructor(props) {
@@ -43,18 +27,21 @@ class RateComponent extends Component {
         this.state = {
             value: rating,
             hover: -1,
-            tags: '',
+            tags: [],
             comments: this.props.form.comments.value,
             expanded: this.props.form.comments.expanded,
             previouslyRated: previouslyRated
         };
+
+        // this.renderTags = this.renderTags.bind(this);
+        this.handleTagChange = this.handleTagChange.bind(this);
     }
 
     /**
      * Expand out the comments area
      */
-    setExpand(e) {
-        e.preventDefault();
+    setExpand(e, prevent) {
+        prevent && e.preventDefault();
         this.setState({ expanded: !this.state.expanded });
     }
 
@@ -77,20 +64,20 @@ class RateComponent extends Component {
         const commentsClasses = classNames({
             'rating__comments': true,
             'rating__comments--expanded': this.state.expanded
-        }), { errors } = this.props;
+        }), { errors, stars } = this.props;
 
         return this.props.form.comments.enabled && (
             <div className='rating__comments-outer'>
-                <button
-                    className='rating__comments-toggle'
-                    onClick={e => this.setExpand(e)}
-                    aria-controls='ratingcomments'
-                    aria-expanded={this.state.expanded}
-                    id='rating_commnets_expand'
-                    disabled={disabled || submitted}
-                >
-                    Add a comment
-                </button>
+                {(stars.Tags.length === 0) && (
+                    <button
+                        className='rating__comments-toggle'
+                        onClick={e => this.setExpand(e, true)}
+                        aria-controls='ratingcomments'
+                        aria-expanded={this.state.expanded}
+                        id='rating_commnets_expand'
+                        disabled={disabled || submitted}
+                    > Add a comment </button>
+                )}
                 <div
                     className={commentsClasses}
                     id='ratingcomments'
@@ -132,46 +119,64 @@ class RateComponent extends Component {
     renderStars(disabled) {
         const { errors, form, stars } = this.props;
 
-        return <div className='rating__stars'>
-            <Rating
-                name={`rating-${this.props.name}`}
-                emptyIcon={<Star stroke='#fff' />}
-                icon={<Star stroke='#fff' fill='#fff' />}
-                value={parseInt(this.state.value, 10)}
-                max={stars.Max}
-                onChange={(event, newValue) => {
-                    this.props.setRatingValue(newValue);
-                    this.setState({ value: newValue });
-                    this.setState({ tags: '' });
-                    this.renderTags();
-                }}
-                onChangeActive={(event, newHover) => {
-                    this.setState({ hover: newHover });
-                }}
-                disabled={disabled || form.submitted}
-            />
-            {this.state.value !== null && <p>{stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]}</p>}
-            {errors['rating'] && (
-                <p className='rating__error'>Please select a rating</p>
-            )}
-        </div>;
+        return ((stars && stars.Max > 0) &&
+            <div className='rating__stars'>
+                <Rating
+                    name={`rating-${this.props.name}`}
+                    emptyIcon={<Star stroke='#fff' />}
+                    icon={<Star stroke='#fff' fill='#fff' />}
+                    value={parseInt(this.state.value, 10)}
+                    max={stars.Max}
+                    onChange={(event, newValue) => {
+                        this.props.setRatingValue(newValue);
+                        this.setState({ value: newValue });
+                        this.setState({ tags: '' });
+                        this.renderTags();
+                    }}
+                    onChangeActive={(event, newHover) => {
+                        this.setState({ hover: newHover });
+                    }}
+                    disabled={disabled || form.submitted}
+                />
+                {this.state.value !== null && (stars.Labels && Object.keys(stars.Labels).length > 0) && <p>{stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]}</p>}
+                {errors['rating'] && (
+                    <p className='rating__error'>Please select a rating</p>
+                )}
+            </div>
+        );
+    }
+
+    handleTagChange(e, tag) {
+        if (e.currentTarget.checked) {
+            this.setState({ tags: [...this.state.tags, tag] }, () => {
+                !this.state.expanded && this.setExpand(e, false);
+                this.props.setTagsValue([...this.state.tags].join(','));
+            });
+        } else {
+            const copy = [...this.state.tags];
+            const index = copy.indexOf(tag);
+            if (index > -1) {
+                copy.splice(index, 1);
+                this.setState({ tags: copy }, () => {
+                    this.state.tags.length === 0 && this.setExpand(e, false);
+                    this.props.setTagsValue(copy.join(','));
+                });
+            }
+            // this.state.tags.length === 0 && this.setExpand(e, false);
+        }
     }
 
     renderTags() {
         const { stars } = this.props;
 
-        return (this.state.value > 0 && stars) && (
+        return (this.state.value > 0 && stars && stars.Tags.length > 0) && (
             <div className='rating__tags'>
                 {
                     Object.values(stars.Tags[this.state.value - 1]).map((tag) => {
                         return <Tag
                             key={`tag_${tag}`}
                             label={tag}
-                            onChange={(e) => {
-                                e.currentTarget.checked && this.setState({
-                                    tags: this.state.tags + tag + ','
-                                });
-                            }}
+                            onChange={e => this.handleTagChange(e, tag)}
                         />;
                     })
                 }
