@@ -68,7 +68,7 @@ class RateComponent extends Component {
 
         return this.props.form.comments.enabled && (
             <div className='rating__comments-outer'>
-                {(stars && stars.Tags && stars.Tags.length === 0) && (
+                {(stars && (!stars.Tags || stars.Tags.length === 0)) && (
                     <button
                         className='rating__comments-toggle'
                         onClick={e => this.setExpand(e, true)}
@@ -162,7 +162,6 @@ class RateComponent extends Component {
                     this.props.setTagsValue(copy.join(','));
                 });
             }
-            // this.state.tags.length === 0 && this.setExpand(e, false);
         }
     }
 
