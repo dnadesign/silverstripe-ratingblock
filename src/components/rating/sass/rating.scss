@@ -86,6 +86,8 @@
         p {
             color: #FFF;
             min-height: 1em;
+            line-height: 1em;
+            margin: 0;
 
             .rating--disabled & {
                 opacity: 0.5;
