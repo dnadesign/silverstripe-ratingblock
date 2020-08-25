@@ -683,6 +683,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         readOnly: submitted,
         disabled: disabled || submitted,
         value: this.state.comments,
+        placeholder: this.props.form.comments.placeholder,
         onChange: function onChange(event) {
           _this2.props.setCommentsValue(event.target.value);
 
@@ -726,6 +727,8 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           _this3.setState({
             value: newValue
           });
+
+          _this3.state.tags.length > 0 && _this3.setExpand(event, false);
 
           _this3.setState({
             tags: ''

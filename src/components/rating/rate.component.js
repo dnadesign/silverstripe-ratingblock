@@ -98,6 +98,7 @@ class RateComponent extends Component {
                             readOnly={submitted}
                             disabled={disabled || submitted}
                             value={this.state.comments}
+                            placeholder={this.props.form.comments.placeholder}
                             onChange={(event) => {
                                 this.props.setCommentsValue(event.target.value);
                                 this.setState({ comments: event.target.value });
@@ -130,6 +131,7 @@ class RateComponent extends Component {
                     onChange={(event, newValue) => {
                         this.props.setRatingValue(newValue);
                         this.setState({ value: newValue });
+                        this.state.tags.length > 0 && this.setExpand(event, false);
                         this.setState({ tags: '' });
                         this.renderTags();
                     }}

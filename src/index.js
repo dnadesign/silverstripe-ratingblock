@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 import './index.scss';
 
-let rating = 2;
+let rating = 0;
 const
     setRatingValue = (value) => {
         rating = value;
@@ -32,7 +32,7 @@ const
             expanded: false,
             props: []
         },
-        tags: 'meh'
+        tags: ''
     },
     page = {
         id: 1,
