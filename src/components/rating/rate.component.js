@@ -22,7 +22,7 @@ class RateComponent extends Component {
         // check if this page has been previously rated by looking
         // for thje cookie with the pageName
         const rating = props.value || 0,
-            previouslyRated = rating > 0;
+            previouslyRated = this.props.form ? (this.props.form.submitted || false) : false;
 
         this.state = {
             value: rating,

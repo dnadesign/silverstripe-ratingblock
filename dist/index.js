@@ -603,7 +603,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     // for thje cookie with the pageName
 
     var rating = props.value || 0,
-        previouslyRated = rating > 0;
+        previouslyRated = _this.props.form ? _this.props.form.submitted || false : false;
     _this.state = {
       value: rating,
       hover: -1,
