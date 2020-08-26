@@ -545,7 +545,7 @@ var tag_Tag = function Tag(props) {
     key: "tag__".concat(label),
     id: "tag__".concat(label),
     value: label,
-    className: "tag__item ".concat(disabled && 'tag__disabled')
+    className: "tag__item ".concat(disabled ? 'tag__disabled' : '')
   }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
     id: "tag__input__".concat(label),
     type: "checkbox",
@@ -603,7 +603,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     // for thje cookie with the pageName
 
     var rating = props.value || 0,
-        previouslyRated = _this.props.form ? _this.props.form.submitted || false : false;
+        previouslyRated = _this.props.previouslyRated || false;
     _this.state = {
       value: rating,
       hover: -1,
@@ -901,7 +901,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         'rating': true,
         'rating--disabled': disabled,
         'rating--expanded': this.state.expanded,
-        'rating--modal': this.state.value > 0
+        'rating--modal': this.state.value > 0 && !this.state.previouslyRated
       });
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: classes,
