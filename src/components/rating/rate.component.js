@@ -118,7 +118,11 @@ class RateComponent extends Component {
      * Render stars
      */
     renderStars(disabled) {
-        const { errors, stars } = this.props;
+        const { errors, stars } = this.props,
+            descriptionClasses = classNames({
+                'rating__description': true,
+                'rating__description--disabled': this.state.value === 0
+            });
 
         return ((stars && stars.Max > 0) &&
             <div className='rating__stars'>
@@ -130,7 +134,7 @@ class RateComponent extends Component {
                     max={stars.Max}
                     onChange={(event, newValue) => {
                         this.props.setRatingValue(newValue);
-                        this.setState({ value: newValue });
+                        this.setState({ value: newValue || 0 });
                         this.state.tags.length > 0 && this.setExpand(event, false);
                         this.setState({ tags: '' });
                         this.renderTags();
@@ -140,7 +144,7 @@ class RateComponent extends Component {
                     }}
                     disabled={disabled}
                 />
-                {this.state.value !== null && (stars.Labels && Object.keys(stars.Labels).length > 0) && <p>{stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]}</p>}
+                {this.state.value !== null && (stars.Labels && Object.keys(stars.Labels).length > 0) && <p className={descriptionClasses}>{stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]}</p>}
                 {errors['rating'] && (
                     <p className='rating__error'>Please select a rating</p>
                 )}
@@ -168,8 +172,8 @@ class RateComponent extends Component {
     }
 
     renderTags(disabled) {
-        const { stars, form } = this.props;
-        const tagList = form.tags && form.tags.split(',');
+        const { stars, form } = this.props,
+            tagList = form.tags && form.tags.split(',');
 
         return (this.state.value > 0 && stars && stars.Tags && stars.Tags.length > 0) && (
             <div className='rating__tags'>
@@ -194,7 +198,7 @@ class RateComponent extends Component {
      * Render Submit button
      */
     renderSubmit(disabled) {
-        return <>
+        return (this.state.value > 0 && this.state.tags.length > 0 && <>
             <input
                 type='hidden'
                 name='pageName'
@@ -217,7 +221,7 @@ class RateComponent extends Component {
             >
                 Submit
             </button>
-        </>;
+        </>);
     }
 
     renderIntro(loading, submitted) {
@@ -278,7 +282,8 @@ class RateComponent extends Component {
             classes = classNames({
                 'rating': true,
                 'rating--disabled': disabled,
-                'rating--expanded': this.state.expanded
+                'rating--expanded': this.state.expanded,
+                'rating--modal': this.state.value > 0
             });
 
         return (

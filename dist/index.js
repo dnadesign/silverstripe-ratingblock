@@ -707,7 +707,11 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
 
       var _this$props2 = this.props,
           errors = _this$props2.errors,
-          stars = _this$props2.stars;
+          stars = _this$props2.stars,
+          descriptionClasses = classnames_default()({
+        'rating__description': true,
+        'rating__description--disabled': this.state.value === 0
+      });
       return stars && stars.Max > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__stars"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(lab_["Rating"], {
@@ -725,7 +729,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           _this3.props.setRatingValue(newValue);
 
           _this3.setState({
-            value: newValue
+            value: newValue || 0
           });
 
           _this3.state.tags.length > 0 && _this3.setExpand(event, false);
@@ -742,7 +746,9 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           });
         },
         disabled: disabled
-      }), this.state.value !== null && stars.Labels && Object.keys(stars.Labels).length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]), errors['rating'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+      }), this.state.value !== null && stars.Labels && Object.keys(stars.Labels).length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
+        className: descriptionClasses
+      }, stars.Labels[this.state.hover !== -1 ? this.state.hover : this.state.value]), errors['rating'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, "Please select a rating"));
     }
@@ -783,8 +789,8 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
 
       var _this$props3 = this.props,
           stars = _this$props3.stars,
-          form = _this$props3.form;
-      var tagList = form.tags && form.tags.split(',');
+          form = _this$props3.form,
+          tagList = form.tags && form.tags.split(',');
       return this.state.value > 0 && stars && stars.Tags && stars.Tags.length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__tags"
       }, Object.values(stars.Tags[this.state.value - 1]).map(function (tag) {
@@ -814,7 +820,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     value: function renderSubmit(disabled) {
       var _this6 = this;
 
-      return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
+      return this.state.value > 0 && this.state.tags.length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
         type: "hidden",
         name: "pageName",
         value: this.page.name
@@ -894,7 +900,8 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           classes = classnames_default()({
         'rating': true,
         'rating--disabled': disabled,
-        'rating--expanded': this.state.expanded
+        'rating--expanded': this.state.expanded,
+        'rating--modal': this.state.value > 0
       });
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: classes,
