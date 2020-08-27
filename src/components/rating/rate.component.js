@@ -105,7 +105,6 @@ class RateComponent extends Component {
                             }}
                             name={this.props.form.comments.name}
                             aria-hidden={!this.state.expanded}
-                            style={!this.state.expanded && { zIndex: -1 }}
                         />
                         {errors['comments'] && (
                             <p className='rating__error'>{errors['comments']}</p>

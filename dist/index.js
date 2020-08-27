@@ -692,10 +692,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           });
         },
         name: this.props.form.comments.name,
-        "aria-hidden": !this.state.expanded,
-        style: !this.state.expanded && {
-          zIndex: -1
-        }
+        "aria-hidden": !this.state.expanded
       }), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, errors['comments']))));
