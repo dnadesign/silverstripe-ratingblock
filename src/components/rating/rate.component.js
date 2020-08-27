@@ -96,7 +96,7 @@ class RateComponent extends Component {
                         <textarea
                             rows={5}
                             readOnly={submitted}
-                            disabled={disabled || submitted}
+                            disabled={disabled || submitted || !this.state.expanded}
                             value={this.state.comments}
                             placeholder={this.props.form.comments.placeholder}
                             onChange={(event) => {
@@ -104,6 +104,8 @@ class RateComponent extends Component {
                                 this.setState({ comments: event.target.value });
                             }}
                             name={this.props.form.comments.name}
+                            aria-hidden={!this.state.expanded}
+                            style={!this.state.expanded && { zIndex: -1 }}
                         />
                         {errors['comments'] && (
                             <p className='rating__error'>{errors['comments']}</p>
@@ -283,7 +285,7 @@ class RateComponent extends Component {
                 'rating': true,
                 'rating--disabled': disabled,
                 'rating--expanded': this.state.expanded,
-                'rating--modal': this.state.value > 0 && !this.state.previouslyRated
+                'rating__rated': this.state.value > 0 && !this.state.previouslyRated
             });
 
         return (

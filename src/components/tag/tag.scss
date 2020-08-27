@@ -6,13 +6,20 @@
 
     &__item {
         display: inline-block;
+        position: relative;
 
         input[type=checkbox] {
-            display: none;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            position: absolute;
 
-            &:checked+label {
-                background-color: #FFF;
-                color: #000;
+            &:focus,
+            &:checked {
+                &+label {
+                    background-color: #FFF;
+                    color: #000;
+                }
             }
         }
 

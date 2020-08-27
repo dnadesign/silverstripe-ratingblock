@@ -681,7 +681,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
       }, "Additional comments"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("textarea", {
         rows: 5,
         readOnly: submitted,
-        disabled: disabled || submitted,
+        disabled: disabled || submitted || !this.state.expanded,
         value: this.state.comments,
         placeholder: this.props.form.comments.placeholder,
         onChange: function onChange(event) {
@@ -691,7 +691,11 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
             comments: event.target.value
           });
         },
-        name: this.props.form.comments.name
+        name: this.props.form.comments.name,
+        "aria-hidden": !this.state.expanded,
+        style: !this.state.expanded && {
+          zIndex: -1
+        }
       }), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
       }, errors['comments']))));
@@ -901,7 +905,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         'rating': true,
         'rating--disabled': disabled,
         'rating--expanded': this.state.expanded,
-        'rating--modal': this.state.value > 0 && !this.state.previouslyRated
+        'rating__rated': this.state.value > 0 && !this.state.previouslyRated
       });
       return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: classes,
