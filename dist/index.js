@@ -821,7 +821,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
     value: function renderSubmit(disabled) {
       var _this6 = this;
 
-      return this.state.value > 0 && (this.props.stars.Tags.length === 0 || this.state.tags.length > 0) && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
+      return this.state.value > 0 && (!this.props.stars.Tags || this.state.tags.length > 0) && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.Fragment, null, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("input", {
         type: "hidden",
         name: "pageName",
         value: this.page.name
