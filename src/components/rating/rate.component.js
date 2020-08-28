@@ -199,7 +199,7 @@ class RateComponent extends Component {
      * Render Submit button
      */
     renderSubmit(disabled) {
-        return (this.state.value > 0 && this.state.tags.length > 0 && <>
+        return (this.state.value > 0 && (this.props.stars.Tags.length === 0 || this.state.tags.length > 0) && <>
             <input
                 type='hidden'
                 name='pageName'
