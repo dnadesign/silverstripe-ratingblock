@@ -657,7 +657,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           _this$props = this.props,
           errors = _this$props.errors,
           stars = _this$props.stars;
-      return this.props.form.comments.enabled && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
+      return this.props.form.comments.enabled ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__comments-outer"
       }, stars && (!stars.Tags || stars.Tags.length === 0) && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
         className: "rating__comments-toggle",
@@ -695,7 +695,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         "aria-hidden": !this.state.expanded
       }), errors['comments'] && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", {
         className: "rating__error"
-      }, errors['comments']))));
+      }, errors['comments'])))) : null;
     }
     /**
      * Render stars

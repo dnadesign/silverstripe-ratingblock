@@ -66,7 +66,7 @@ class RateComponent extends Component {
             'rating__comments--expanded': this.state.expanded
         }), { errors, stars } = this.props;
 
-        return this.props.form.comments.enabled && (
+        return this.props.form.comments.enabled ? (
             <div className='rating__comments-outer'>
                 {(stars && (!stars.Tags || stars.Tags.length === 0)) && (
                     <button
@@ -112,7 +112,7 @@ class RateComponent extends Component {
                     </div>
                 </div>
             </div>
-        );
+        ) : null;
     }
 
     /**
