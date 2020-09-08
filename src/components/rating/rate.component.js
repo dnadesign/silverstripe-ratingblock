@@ -70,6 +70,7 @@ class RateComponent extends Component {
             <div className='rating__comments-outer'>
                 {(stars && (!stars.Tags || stars.Tags.length === 0)) && (
                     <button
+                        ref='ratingCommentButton'
                         className='rating__comments-toggle'
                         onClick={e => this.setExpand(e, true)}
                         aria-controls='ratingcomments'
@@ -94,6 +95,7 @@ class RateComponent extends Component {
                             Additional comments
                         </label>
                         <textarea
+                            ref='ratingCommentInput'
                             rows={5}
                             readOnly={submitted}
                             disabled={disabled || submitted || !this.state.expanded}
@@ -128,6 +130,7 @@ class RateComponent extends Component {
         return ((stars && stars.Max > 0) &&
             <div className='rating__stars'>
                 <Rating
+                    ref='ratingStars'
                     name={`rating-${this.props.name}`}
                     emptyIcon={<Star stroke='#fff' />}
                     icon={<Star stroke='#fff' fill='#fff' />}
@@ -177,7 +180,7 @@ class RateComponent extends Component {
             tagList = form.tags && form.tags.split(',');
 
         return (this.state.value > 0 && stars && stars.Tags && stars.Tags.length > 0) && (
-            <div className='rating__tags'>
+            <div className='rating__tags' ref='ratingTags'>
                 {
                     Object.values(stars.Tags[this.state.value - 1]).map((tag) => {
                         const checked = tagList.includes(tag);
@@ -211,6 +214,7 @@ class RateComponent extends Component {
                 value={this.page.id}
             />
             <button
+                ref='ratingSubmit'
                 id='rating_submit'
                 type='submit'
                 className='button button--primary button--small button--cta button--rating rating__action'

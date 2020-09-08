@@ -660,6 +660,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
       return this.props.form.comments.enabled ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__comments-outer"
       }, stars && (!stars.Tags || stars.Tags.length === 0) && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
+        ref: "ratingCommentButton",
         className: "rating__comments-toggle",
         onClick: function onClick(e) {
           return _this2.setExpand(e, true);
@@ -679,6 +680,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         className: "sr-only",
         htmlFor: this.props.CommentsID
       }, "Additional comments"), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("textarea", {
+        ref: "ratingCommentInput",
         rows: 5,
         readOnly: submitted,
         disabled: disabled || submitted || !this.state.expanded,
@@ -716,6 +718,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
       return stars && stars.Max > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
         className: "rating__stars"
       }, /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(lab_["Rating"], {
+        ref: "ratingStars",
         name: "rating-".concat(this.props.name),
         emptyIcon: /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(star, {
           stroke: "#fff"
@@ -793,7 +796,8 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
           form = _this$props3.form,
           tagList = form.tags && form.tags.split(',');
       return this.state.value > 0 && stars && stars.Tags && stars.Tags.length > 0 && /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("div", {
-        className: "rating__tags"
+        className: "rating__tags",
+        ref: "ratingTags"
       }, Object.values(stars.Tags[this.state.value - 1]).map(function (tag) {
         var checked = tagList.includes(tag);
         return /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(components_tag_tag, {
@@ -830,6 +834,7 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
         name: "pageID",
         value: this.page.id
       }), /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("button", {
+        ref: "ratingSubmit",
         id: "rating_submit",
         type: "submit",
         className: "button button--primary button--small button--cta button--rating rating__action",
