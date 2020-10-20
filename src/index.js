@@ -12,9 +12,18 @@ const
     },
     setCommentsValue = (value) => {
         console.log(value);
+        form.comments.value = value;
     },
     setTagsValue = (value) => {
-        console.log(value);
+        if (form.tags.includes(value)) {
+            form.tags = arrayRemove(form.tags, value);
+        } else {
+            form.tags.push(value)
+        }
+        console.log(form.tags.toString());
+    },
+    arrayRemove = (arr, value) => {
+        return arr.filter(function (ele) { return ele != value; });
     },
     onSubmit = (e) => {
         e.preventDefault();
@@ -22,50 +31,47 @@ const
         return form.submitted;
     },
     form = {
-        successMessage: 'Thanks for you feedback.',
-        intro: '',
-        title: 'We appreciate your feedback.',
+        successMessage: window.RatingBlock.RatingFormSuccessMessage,
+        intro: window.RatingBlock.RatingFormIntro,
+        title: window.RatingBlock.RatingFormTitle,
         submitted: false,
         comments: {
-            ID: 1,
-            enabled: false,
-            expanded: false,
-            props: []
+            id: window.RatingBlock.CommentsID,
+            enabled: window.RatingBlock.EnableComments,
+            value: '',
+            name: window.RatingBlock.CommentsName,
+            placeholder: window.RatingBlock.CommentsPlaceholder
         },
-        tags: ''
+        tags: []
     },
     page = {
-        id: 1,
-        name: 'Rating block'
+        id: window.RatingBlock.PageID,
+        name: window.RatingBlock.PageName
     },
     stars = {
-        // Labels: { 1: 'nah', 2: 'meh', 3: 'ok', 4: 'woop', 5: 'wow' },
-        Max: 5
-        // Tags: [
-        //     { 1: 'nah', 2: 'extremely nah', 3: 'very nah' },
-        //     { 1: 'meh', 2: 'very meh', 3: 'extremely meh' },
-        //     { 1: 'ok', 2: 'very ok', 3: 'extremely ok' },
-        //     { 1: 'woop woop', 2: 'very woop woop', 3: 'extremely woop woop' },
-        //     { 1: 'wow', 2: 'very wow', 3: 'extremely wow' }
-        // ]
+        Labels: window.RatingBlock.RatingStars.Labels,
+        Max: window.RatingBlock.RatingStars ? (window.RatingBlock.RatingStars.Max === 0 ? { 'Max': 5 } : window.RatingBlock.RatingStars) : { 'Max': 5 },
+        Tags: window.RatingBlock.RatingStars.Tags
     };
 
+
 ReactDOM.render(
-    <RateComponent
-        name='Rating block'
-        errors={[]}
-        value={rating}
-        loading={false}
-        setRatingValue={setRatingValue}
-        setCommentsValue={setCommentsValue}
-        setTagsValue={setTagsValue}
-        onSubmit={onSubmit}
-        stars={stars}
-        form={form}
-        page={page}
-        previouslyRated={false}
-        enabled
-    />,
+    window.RatingBlock ?
+        <RateComponent
+            name='Rating block'
+            errors={[]}
+            value={rating}
+            loading={false}
+            stars={stars}
+            form={form}
+            page={page}
+            previouslyRated={false}
+            enabled
+            setRatingValue={setRatingValue}
+            setCommentsValue={setCommentsValue}
+            setTagsValue={setTagsValue}
+            onSubmit={onSubmit}
+        /> : <p>No data provided</p>,
     document.getElementById('rating_block')
 );
 

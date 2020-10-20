@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core"));
+		module.exports = factory(require("react"), require("react-dom"), require("@material-ui/lab"), require("@material-ui/core"));
 	else if(typeof define === 'function' && define.amd)
-		define("silverstripe-react-ratingblock", ["React", "@material-ui/lab", "@material-ui/core"], factory);
+		define("silverstripe-react-ratingblock", ["React", "ReactDOM", "@material-ui/lab", "@material-ui/core"], factory);
 	else if(typeof exports === 'object')
-		exports["silverstripe-react-ratingblock"] = factory(require("react"), require("@material-ui/lab"), require("@material-ui/core"));
+		exports["silverstripe-react-ratingblock"] = factory(require("react"), require("react-dom"), require("@material-ui/lab"), require("@material-ui/core"));
 	else
-		root["silverstripe-react-ratingblock"] = factory(root["React"], root["@material-ui/lab"], root["@material-ui/core"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__) {
+		root["silverstripe-react-ratingblock"] = factory(root["React"], root["ReactDOM"], root["@material-ui/lab"], root["@material-ui/core"]);
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__2__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__4__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 7);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -171,15 +171,134 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-// extracted by mini-css-extract-plugin
+module.exports = __WEBPACK_EXTERNAL_MODULE__4__;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/* unused harmony export register */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return unregister; });
+// This optional code is used to register a service worker.
+// register() is not called by default.
+// This lets the app load faster on subsequent visits in production, and gives
+// it offline capabilities. However, it also means that developers (and users)
+// will only see deployed updates on subsequent visits to a page, after all the
+// existing tabs open on the page have been closed, since previously cached
+// resources are updated in the background.
+// To learn more about the benefits of this model and instructions on how to
+// opt-in, read https://bit.ly/CRA-PWA
+var isLocalhost = Boolean(window.location.hostname === 'localhost' || // [::1] is the IPv6 localhost address.
+window.location.hostname === '[::1]' || // 127.0.0.0/8 are considered localhost for IPv4.
+window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/));
+function register(config) {
+  if ( true && 'serviceWorker' in navigator) {
+    // The URL constructor is available in all browsers that support SW.
+    var publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+
+    if (publicUrl.origin !== window.location.origin) {
+      // Our service worker won't work if PUBLIC_URL is on a different origin
+      // from what our page is served on. This might happen if a CDN is used to
+      // serve assets; see https://github.com/facebook/create-react-app/issues/2374
+      return;
+    }
+
+    window.addEventListener('load', function () {
+      var swUrl = "".concat(process.env.PUBLIC_URL, "/service-worker.js");
+
+      if (isLocalhost) {
+        // This is running on localhost. Let's check if a service worker still exists or not.
+        checkValidServiceWorker(swUrl, config); // Add some additional logging to localhost, pointing developers to the
+        // service worker/PWA documentation.
+
+        navigator.serviceWorker.ready.then(function () {
+          console.log('This web app is being served cache-first by a service ' + 'worker. To learn more, visit https://bit.ly/CRA-PWA');
+        });
+      } else {
+        // Is not localhost. Just register service worker
+        registerValidSW(swUrl, config);
+      }
+    });
+  }
+}
+
+function registerValidSW(swUrl, config) {
+  navigator.serviceWorker.register(swUrl).then(function (registration) {
+    registration.onupdatefound = function () {
+      var installingWorker = registration.installing;
+
+      if (installingWorker == null) {
+        return;
+      }
+
+      installingWorker.onstatechange = function () {
+        if (installingWorker.state === 'installed') {
+          if (navigator.serviceWorker.controller) {
+            // At this point, the updated precached content has been fetched,
+            // but the previous service worker will still serve the older
+            // content until all client tabs are closed.
+            console.log('New content is available and will be used when all ' + 'tabs for this page are closed. See https://bit.ly/CRA-PWA.'); // Execute callback
+
+            if (config && config.onUpdate) {
+              config.onUpdate(registration);
+            }
+          } else {
+            // At this point, everything has been precached.
+            // It's the perfect time to display a
+            // "Content is cached for offline use." message.
+            console.log('Content is cached for offline use.'); // Execute callback
+
+            if (config && config.onSuccess) {
+              config.onSuccess(registration);
+            }
+          }
+        }
+      };
+    };
+  }).catch(function (error) {
+    console.error('Error during service worker registration:', error);
+  });
+}
+
+function checkValidServiceWorker(swUrl, config) {
+  // Check if the service worker can be found. If it can't reload the page.
+  fetch(swUrl, {
+    headers: {
+      'Service-Worker': 'script'
+    }
+  }).then(function (response) {
+    // Ensure service worker exists, and that we really are getting a JS file.
+    var contentType = response.headers.get('content-type');
+
+    if (response.status === 404 || contentType != null && contentType.indexOf('javascript') === -1) {
+      // No service worker found. Probably a different app. Reload the page.
+      navigator.serviceWorker.ready.then(function (registration) {
+        registration.unregister().then(function () {
+          window.location.reload();
+        });
+      });
+    } else {
+      // Service worker found. Proceed as normal.
+      registerValidSW(swUrl, config);
+    }
+  }).catch(function () {
+    console.log('No internet connection found. App is running in offline mode.');
+  });
+}
+
+function unregister() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.ready.then(function (registration) {
+      registration.unregister();
+    }).catch(function (error) {
+      console.error(error.message);
+    });
+  }
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(9)))
 
 /***/ }),
 /* 6 */
@@ -189,15 +308,227 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, "RateComponent", function() { return /* reexport */ rate_component; });
-__webpack_require__.d(__webpack_exports__, "default", function() { return /* reexport */ rate_component; });
+// EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
+var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_require__(0);
+var external_commonjs_react_commonjs2_react_amd_React_root_React_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_react_commonjs2_react_amd_React_root_React_);
+
+// EXTERNAL MODULE: external {"commonjs":"react-dom","commonjs2":"react-dom","amd":"ReactDOM","root":"ReactDOM"}
+var external_commonjs_react_dom_commonjs2_react_dom_amd_ReactDOM_root_ReactDOM_ = __webpack_require__(2);
+var external_commonjs_react_dom_commonjs2_react_dom_amd_ReactDOM_root_ReactDOM_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_react_dom_commonjs2_react_dom_amd_ReactDOM_root_ReactDOM_);
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
 function _arrayLikeToArray(arr, len) {
@@ -361,12 +692,8 @@ function _createSuper(Derived) {
     return _possibleConstructorReturn(this, result);
   };
 }
-// EXTERNAL MODULE: external {"commonjs":"react","commonjs2":"react","amd":"React","root":"React"}
-var external_commonjs_react_commonjs2_react_amd_React_root_React_ = __webpack_require__(0);
-var external_commonjs_react_commonjs2_react_amd_React_root_React_default = /*#__PURE__*/__webpack_require__.n(external_commonjs_react_commonjs2_react_amd_React_root_React_);
-
 // EXTERNAL MODULE: external "@material-ui/lab"
-var lab_ = __webpack_require__(2);
+var lab_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: ./node_modules/classnames/index.js
 var classnames = __webpack_require__(1);
@@ -451,10 +778,10 @@ function _objectWithoutProperties(source, excluded) {
   return target;
 }
 // EXTERNAL MODULE: external "@material-ui/core"
-var core_ = __webpack_require__(3);
+var core_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: ./src/components/loading/loading.scss
-var loading_loading = __webpack_require__(4);
+var loading_loading = __webpack_require__(6);
 
 // CONCATENATED MODULE: ./src/components/loading/loading.js
 
@@ -519,7 +846,7 @@ var star_Star = function Star(props) {
 
 /* harmony default export */ var star = (star_Star);
 // EXTERNAL MODULE: ./src/components/tag/tag.scss
-var tag_tag = __webpack_require__(5);
+var tag_tag = __webpack_require__(7);
 
 // CONCATENATED MODULE: ./src/components/tag/tag.js
 
@@ -561,7 +888,7 @@ var tag_Tag = function Tag(props) {
 
 /* harmony default export */ var components_tag_tag = (tag_Tag);
 // EXTERNAL MODULE: ./src/components/rating/sass/rating.scss
-var sass_rating = __webpack_require__(6);
+var sass_rating = __webpack_require__(8);
 
 // CONCATENATED MODULE: ./src/components/rating/rate.component.js
 
@@ -931,6 +1258,93 @@ var rate_component_RateComponent = /*#__PURE__*/function (_Component) {
 // CONCATENATED MODULE: ./src/components/rating/index.js
 
 
+// EXTERNAL MODULE: ./src/serviceWorker.js
+var serviceWorker = __webpack_require__(5);
+
+// EXTERNAL MODULE: ./src/index.scss
+var src = __webpack_require__(10);
+
+// CONCATENATED MODULE: ./src/index.js
+
+
+
+
+
+var src_rating = 0;
+
+var setRatingValue = function setRatingValue(value) {
+  src_rating = value;
+},
+    setCommentsValue = function setCommentsValue(value) {
+  console.log(value);
+  src_form.comments.value = value;
+},
+    setTagsValue = function setTagsValue(value) {
+  if (src_form.tags.includes(value)) {
+    src_form.tags = arrayRemove(src_form.tags, value);
+  } else {
+    src_form.tags.push(value);
+  }
+
+  console.log(src_form.tags.toString());
+},
+    arrayRemove = function arrayRemove(arr, value) {
+  return arr.filter(function (ele) {
+    return ele != value;
+  });
+},
+    onSubmit = function onSubmit(e) {
+  e.preventDefault();
+  src_form.submitted = true;
+  return src_form.submitted;
+},
+    src_form = {
+  successMessage: window.RatingBlock.RatingFormSuccessMessage,
+  intro: window.RatingBlock.RatingFormIntro,
+  title: window.RatingBlock.RatingFormTitle,
+  submitted: false,
+  comments: {
+    id: window.RatingBlock.CommentsID,
+    enabled: window.RatingBlock.EnableComments,
+    value: '',
+    name: window.RatingBlock.CommentsName,
+    placeholder: window.RatingBlock.CommentsPlaceholder
+  },
+  tags: []
+},
+    page = {
+  id: window.RatingBlock.PageID,
+  name: window.RatingBlock.PageName
+},
+    src_stars = {
+  Labels: window.RatingBlock.RatingStars.Labels,
+  Max: window.RatingBlock.RatingStars ? window.RatingBlock.RatingStars.Max === 0 ? {
+    'Max': 5
+  } : window.RatingBlock.RatingStars : {
+    'Max': 5
+  },
+  Tags: window.RatingBlock.RatingStars.Tags
+};
+
+external_commonjs_react_dom_commonjs2_react_dom_amd_ReactDOM_root_ReactDOM_default.a.render(window.RatingBlock ? /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement(rate_component, {
+  name: "Rating block",
+  errors: [],
+  value: src_rating,
+  loading: false,
+  stars: src_stars,
+  form: src_form,
+  page: page,
+  previouslyRated: false,
+  enabled: true,
+  setRatingValue: setRatingValue,
+  setCommentsValue: setCommentsValue,
+  setTagsValue: setTagsValue,
+  onSubmit: onSubmit
+}) : /*#__PURE__*/external_commonjs_react_commonjs2_react_amd_React_root_React_default.a.createElement("p", null, "No data provided"), document.getElementById('rating_block')); // If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+
+serviceWorker["a" /* unregister */]();
 
 /***/ })
 /******/ ]);

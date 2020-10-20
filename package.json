@@ -65,6 +65,7 @@
     },
     "scripts": {
         "build": "NODE_ENV=production webpack --config webpack.prod.js -p --mode=production",
+        "build-single": "NODE_ENV=production webpack --config webpack.single.js -p --mode=production",
         "lint": "eslint src",
         "start": "watch 'yarn run build' src",
         "dev": "watch 'yarn run build' src",
