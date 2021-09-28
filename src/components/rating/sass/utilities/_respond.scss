@@ -14,6 +14,8 @@
 
 // _mixins.scss
 
+$respond-size: null;
+
 @mixin respond($media, $maxmin:'min') {
 
 	// check if this is a standard breakpoint or a custom media query

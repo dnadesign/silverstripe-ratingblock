@@ -2,18 +2,44 @@ const { merge } = require('webpack-merge');
 const path = require('path');
 const common = require('./webpack.common.js');
 const eslintFormatter = require('react-dev-utils/eslintFormatter');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const { HotModuleReplacementPlugin } = require('webpack');
 
 module.exports = merge(common, {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    target:  'web',
     entry: './src/index.js',
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
         publicPath: 'http://localhost:8080/dist/'
     },
-    mode: 'development',
-    devtool: 'inline-source-map',
+    plugins: [
+        new ESLintPlugin({
+            context: path.join(__dirname, 'src'),
+            formatter: eslintFormatter,
+            extensions: ['js', 'jsx']
+        }),
+        new HotModuleReplacementPlugin()
+    ],
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                enforce: 'pre',
+                use: [{
+                    loader: 'source-map-loader',
+                    options: {
+                        filterSourceMappingUrl: (url, resourcePath) => {
+                            if (/.*\/node_modules\/.*/.test(resourcePath)) {
+                                return false
+                            }
+                            return true
+                        }
+                    }
+                }]
+            },
             {
                 test: /\.(scss|sass)$/,
                 use: [
@@ -22,28 +48,21 @@ module.exports = merge(common, {
                     'postcss-loader',
                     'fast-sass-loader'
                 ]
-            },
-            {
-                test: /\.(js|jsx)$/,
-                enforce: 'pre',
-                use: [
-                    {
-                        options: {
-                            formatter: eslintFormatter,
-                            eslintPath: require.resolve('eslint')
-                        },
-                        loader: require.resolve('eslint-loader')
-                    }
-                ],
-                include: path.join(__dirname, 'src')
             }
         ]
+    },
+    resolve: {
+        fallback: { "buffer": require.resolve("buffer/") }
+    },
+    stats: {
+        warnings: false
     },
     devServer: {
         hot: true,
         open: true,
         port: 8082,
-        publicPath: 'http://localhost:8080/dist',
+        host: "0.0.0.0",
+        publicPath: 'http://localhost:8082/dist',
         disableHostCheck: true,
         headers: {
             'Access-Control-Allow-Origin': '*',

@@ -1,6 +1,15 @@
 module.exports = {
-    parser: 'babel-eslint',
-    extends: ['standard', 'standard-jsx', 'standard-react'],
+    env: {
+        browser: true,
+        es6: true,
+        node: true
+    },
+    parser: '@babel/eslint-parser',
+    extends: [
+        'standard',
+        'standard-jsx',
+        'standard-react',
+    ],
     rules: {
         'indent': [4, 4, { 'SwitchCase': 1 }],
         'one-var': [2, { 'initialized': 'always' }],
@@ -25,11 +34,16 @@ module.exports = {
         'dot-notation': 'off',
         'quote-props': 'off',
         'indent': 'off',
+        'multiline-ternary': 'off',
         'space-before-function-paren': [0, 'never'],
         'import/no-webpack-loader-syntax': 'off',
         'react/prop-types': 'off'
     },
+    plugins: [
+        "simple-import-sort",
+    ],
     parserOptions: {
+        ecmaVersion: 2020,
         ecmaFeatures: {
             legacyDecorators: true
         }
@@ -40,5 +54,8 @@ module.exports = {
         'window': false,
         'fetch': true,
         'URL': true
+    },
+    settings: {
+        'import/resolver': 'webpack'
     }
 }

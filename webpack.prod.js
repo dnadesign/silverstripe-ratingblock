@@ -2,13 +2,16 @@ const { merge } = require('webpack-merge');
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const common = require('./webpack.common.js');
 const pkg = require('./package.json');
 const libraryName = pkg.name;
 
 module.exports = merge(common, {
+    mode: 'production',
+    devtool: 'source-map',
+    target:  'browserslist',
     entry: './src/components/rating/index.js',
     output: {
         path: path.join(__dirname, 'dist'),
@@ -18,11 +21,12 @@ module.exports = merge(common, {
         publicPath: '/dist/',
         umdNamedDefine: true
     },
-    mode: 'production',
-    devtool: 'source-map',
     // see https://webpack.js.org/configuration/optimization/
     optimization: {
-        minimizer: [new OptimizeCSSAssetsPlugin({})]
+        minimizer: [
+            new TerserPlugin(),
+            new CssMinimizerPlugin(),
+        ]
     },
     module: {
         rules: [
@@ -33,7 +37,7 @@ module.exports = merge(common, {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
-                    'sass-loader'
+                    'fast-sass-loader'
                 ]
             }
         ]
