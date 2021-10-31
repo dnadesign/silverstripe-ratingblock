@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { CircularProgress } from '@material-ui/core';
 
 import './loading.scss';
 
 const Loading = props => {
     const { showImmediately, classes, ...otherProps } = props,
-        [show, setShow] = React.useState(false);
+        [show, setShow] = useState(false);
 
     // Only show the spinner after 1s of inactivity
     // https://material-ui.com/components/progress/#delaying-appearance
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.showImmediately) {
             setShow(true);
             return;

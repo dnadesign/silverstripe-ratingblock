@@ -23,14 +23,19 @@ window.RatingBlock = window.RatingBlock || {
         Name: 'Rating block'
     },
     Stars: {
-        Labels: null,
+        Labels: { 1: 'nah', 2: 'meh', 3: 'ok', 4: 'woop', 5: 'wow' },
         Max: 5,
-        Tags: []
+        Tags: [
+            { 1: 'nah', 2: 'extremely nah', 3: 'very nah' },
+            { 1: 'meh', 2: 'very meh', 3: 'extremely meh' },
+            { 1: 'ok', 2: 'very ok', 3: 'extremely ok' },
+            { 1: 'woop woop', 2: 'very woop woop', 3: 'extremely woop woop' },
+            { 1: 'wow', 2: 'very wow', 3: 'extremely wow' }
+        ]
     }
 };
 
-let rating = 0,
-    localTags = [];
+let rating = 0;
 const
     setRatingValue = (value) => {
         rating = value;
@@ -39,20 +44,8 @@ const
         console.log(value);
     },
     setTagsValue = (value) => {
-<<<<<<< Updated upstream
-        console.log(value);
-=======
-        if (form.tags.includes(value)) {
-            localTags = arrayRemove(localTags, value);
-        } else {
-            localTags.push(value);
-        }
-        form.tags = localTags.toString();
+        form.tags = value;
         console.log(form.tags);
-    },
-    arrayRemove = (arr, value) => {
-        return arr.filter(function (ele) { return ele !== value; });
->>>>>>> Stashed changes
     },
     onSubmit = (e) => {
         e.preventDefault();
@@ -60,17 +53,6 @@ const
         return form.submitted;
     },
     form = {
-<<<<<<< Updated upstream
-        successMessage: 'Thanks for you feedback.',
-        intro: '',
-        title: 'We appreciate your feedback.',
-        submitted: false,
-        comments: {
-            ID: 1,
-            enabled: false,
-            expanded: false,
-            props: []
-=======
         successMessage: window.RatingBlock.Form ? window.RatingBlock.Form.SuccessMessage || '' : '',
         intro: window.RatingBlock.Form ? window.RatingBlock.Form.Intro || '' : '',
         title: window.RatingBlock.Form ? window.RatingBlock.Form.Title || '' : '',
@@ -82,45 +64,10 @@ const
             expanded: window.RatingBlock.Comments ? window.RatingBlock.Comments.Expanded || false : false,
             name: window.RatingBlock.Comments ? window.RatingBlock.Comments.Name || '' : '',
             placeholder: window.RatingBlock.Comments ? window.RatingBlock.Comments.Placeholder || '' : ''
->>>>>>> Stashed changes
         },
         tags: ''
     },
     page = {
-<<<<<<< Updated upstream
-        id: 1,
-        name: 'Rating block'
-    },
-    stars = {
-        // Labels: { 1: 'nah', 2: 'meh', 3: 'ok', 4: 'woop', 5: 'wow' },
-        Max: 5
-        // Tags: [
-        //     { 1: 'nah', 2: 'extremely nah', 3: 'very nah' },
-        //     { 1: 'meh', 2: 'very meh', 3: 'extremely meh' },
-        //     { 1: 'ok', 2: 'very ok', 3: 'extremely ok' },
-        //     { 1: 'woop woop', 2: 'very woop woop', 3: 'extremely woop woop' },
-        //     { 1: 'wow', 2: 'very wow', 3: 'extremely wow' }
-        // ]
-    };
-
-ReactDOM.render(
-    <RateComponent
-        name='Rating block'
-        errors={[]}
-        value={rating}
-        loading={false}
-        setRatingValue={setRatingValue}
-        setCommentsValue={setCommentsValue}
-        setTagsValue={setTagsValue}
-        onSubmit={onSubmit}
-        stars={stars}
-        form={form}
-        page={page}
-        previouslyRated={false}
-        enabled
-    />,
-    document.getElementById('root')
-=======
         id: window.RatingBlock.Page ? window.RatingBlock.Page.ID || 0 : 0,
         name: window.RatingBlock.Page ? window.RatingBlock.Page.Name || '' : ''
     },
@@ -145,7 +92,6 @@ ReactDOM.render(
             onSubmit={onSubmit}
         /> : <p>No data provided</p>,
     document.getElementById('rating_block')
->>>>>>> Stashed changes
 );
 
 // If you want your app to work offline and load faster, you can change

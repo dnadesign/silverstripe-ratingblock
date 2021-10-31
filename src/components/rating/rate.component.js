@@ -13,7 +13,8 @@ import Tag from '../tag/tag';
 import './sass/rating.scss';
 
 const RateComponent = forwardRef((props, ref) => {
-    const { expandCommentOnRate,
+    const {
+            expandCommentOnRate,
             setCommentsValue,
             setRatingValue,
             setTagsValue,
@@ -165,7 +166,6 @@ const RateComponent = forwardRef((props, ref) => {
             if (e.currentTarget.checked) {
                 setTags([...tags, tag]);
                 !expanded && setExpanded(true);
-                setTagsValue([...tags].join(','));
             } else {
                 const copy = [...tags];
                 const index = copy.indexOf(tag);
@@ -173,7 +173,7 @@ const RateComponent = forwardRef((props, ref) => {
                     copy.splice(index, 1);
                     setTags(copy);
                     tags.length === 0 && setExpanded(false);
-                    setTagsValue(copy.join(','));
+                    // setTagsValue([...tags].join(','));
                 }
             }
         },
@@ -279,6 +279,10 @@ const RateComponent = forwardRef((props, ref) => {
 
         expandCommentOnRate && (value > 0 ? setExpanded(true) : setExpanded(false));
     }, [value]);
+
+    useEffect(() => {
+        setTagsValue([...tags].join(','));
+    }, [tags]);
 
     useImperativeHandle(ref, () => ({
         focusCheckedStar: () => {
