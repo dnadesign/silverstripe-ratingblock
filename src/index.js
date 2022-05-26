@@ -45,7 +45,6 @@ const
     },
     setTagsValue = (value) => {
         form.tags = value;
-        console.log(form.tags);
     },
     onSubmit = (e) => {
         e.preventDefault();

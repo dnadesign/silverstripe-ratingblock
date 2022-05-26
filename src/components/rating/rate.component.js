@@ -36,6 +36,7 @@ const RateComponent = forwardRef((props, ref) => {
         [tags, setTags] = useState([]),
         [comments, setComments] = useState(form.comments.value),
         [expanded, setExpanded] = useState(form.comments.expanded),
+        [showSubmit, setShowSubmit] = useState(false),
         disabled = previouslyRated || loading || form.submitted,
         isFirstRender = useRef(true),
         starsRef = useRef(),
@@ -163,6 +164,9 @@ const RateComponent = forwardRef((props, ref) => {
             );
         },
         handleTagChange = (e, tag) => {
+            if (!showSubmit) {
+                setShowSubmit(true);
+            }
             if (e.currentTarget.checked) {
                 setTags([...tags, tag]);
                 !expanded && setExpanded(true);
@@ -205,7 +209,8 @@ const RateComponent = forwardRef((props, ref) => {
          * Render Submit button
          */
         renderSubmit = (disabled) => {
-            return (value > 0 && (!stars.Tags || tags.length > 0) && <>
+            const isDisabled = (!stars.Tags || tags.length === 0) || disabled;
+            return (value > 0 && showSubmit && <>
                 <input
                     type='hidden'
                     name='pageName'
@@ -221,8 +226,8 @@ const RateComponent = forwardRef((props, ref) => {
                     id='rating_submit'
                     type='submit'
                     className='button button--primary button--small button--cta button--rating rating__action'
-                    aria-disabled={disabled}
-                    disabled={disabled}
+                    aria-disabled={isDisabled}
+                    disabled={isDisabled}
                     onClick={(e) => {
                         onSubmit(e);
                     }}
