@@ -192,8 +192,12 @@ const RateComponent = forwardRef((props, ref) => {
                     {
                         Object.values(stars.Tags[value - 1]).map((tag) => {
                             const checked = tagList.includes(tag);
+                            // need to include the checked prop on the key
+                            // as react's diff algo will try and reuse the html
+                            // as the element has not changed (it doesn't pick up on the checked prop)
+                            // inclduing the checked prop on the key will force it to re-render
                             return <Tag
-                                key={`tag_${tag}`}
+                                key={`tag_${tag}${checked}`}
                                 label={tag}
                                 active={checked}
                                 disabled={disabled}
