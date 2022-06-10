@@ -88,7 +88,7 @@
         "lint": "eslint src",
         "start": "watch 'yarn run build' src",
         "dev": "watch 'yarn run build' src",
-        "solo-start": "NODE_ENV=development webpack serve --host 0.0.0.0 --hot --useLocalIp --config webpack.dev.js",
+        "solo-start": "NODE_ENV=development webpack serve --config webpack.dev.js",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
