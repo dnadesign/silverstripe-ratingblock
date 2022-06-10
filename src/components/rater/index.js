@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { Rating } from '@material-ui/lab';
 import classNames from 'classnames';
 import Star from '../star/star';
 
-export const Rater = props => {
-    const { stars, ref, name, value, disabled, onChange, onChangeActive, errors } = props,
+export const Rater = forwardRef((props, ref) => {
+    const { stars, name, value, disabled, onChange, onChangeActive, errors } = props,
         descriptionClasses = classNames({
             'rating__description': true,
             'rating__description--disabled': value === 0
@@ -32,4 +32,4 @@ export const Rater = props => {
             )}
         </div>
     ) || null;
-};
+});

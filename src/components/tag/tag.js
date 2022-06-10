@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './tag.scss';
 
@@ -6,17 +6,18 @@ const Tag = props => {
     const { label, onChange, disabled, active } = props,
         [checked, setChecked] = React.useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (props.active) {
             setChecked(true);
         }
-    }, [props.active]);
+    }, [active]);
 
     return (
         <div key={`tag__${label}`} id={`tag__${label}`} value={label} className={`tag__item ${disabled ? 'tag__disabled' : ''}`}>
             <input
                 id={`tag__input__${label}`}
                 type='checkbox'
+                checked={disabled ? active : checked}
                 defaultChecked={disabled ? active : checked}
                 onChange={onChange}
                 onClick={() => setChecked(!checked)}
