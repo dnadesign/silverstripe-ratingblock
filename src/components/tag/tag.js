@@ -18,7 +18,6 @@ const Tag = props => {
                 id={`tag__input__${label}`}
                 type='checkbox'
                 checked={disabled ? active : checked}
-                defaultChecked={disabled ? active : checked}
                 onChange={onChange}
                 onClick={() => setChecked(!checked)}
             />
