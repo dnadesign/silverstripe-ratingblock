@@ -4,13 +4,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-string-refs */
 import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import { Rating } from '@material-ui/lab';
 import classNames from 'classnames';
 import Loading from '../loading/loading';
-import Star from '../star/star';
-import Tag from '../tag/tag';
+import { Rater } from '../rater';
 
 import './sass/rating.scss';
+import { TagList } from '../taglist';
 
 const RateComponent = forwardRef((props, ref) => {
     const {
@@ -31,8 +30,8 @@ const RateComponent = forwardRef((props, ref) => {
         // for thje cookie with the pageName
         rating = props.value || 0,
         previouslyRated = props.previouslyRated || false,
+        [submitted, setSubmitted] = useState(false),
         [value, setValue] = useState(rating),
-        [hover, setHover] = useState(-1),
         [tags, setTags] = useState([]),
         [comments, setComments] = useState(form.comments.value),
         [expanded, setExpanded] = useState(form.comments.expanded),
@@ -50,13 +49,6 @@ const RateComponent = forwardRef((props, ref) => {
             'rating--expanded': expanded,
             'rating__rated': value > 0 && !previouslyRated
         }),
-        /**
-         * Expand out the comments area
-         */
-        setExpand = (e, prevent) => {
-            prevent && e.preventDefault();
-            setExpanded(!expanded);
-        },
         /**
          * Render title
          */
@@ -131,44 +123,27 @@ const RateComponent = forwardRef((props, ref) => {
          * Render stars
          */
         renderStars = (disabled) => {
-            const descriptionClasses = classNames({
-                'rating__description': true,
-                'rating__description--disabled': value === 0
-            });
-
-            return ((stars && stars.Max > 0) &&
-                <div className='rating__stars'>
-                    <Rating
-                        ref={starsRef}
-                        name={`rating-${name}`}
-                        emptyIcon={<Star stroke='#fff' />}
-                        icon={<Star stroke='#fff' fill='#fff' />}
-                        value={parseInt(value, 10)}
-                        max={stars.Max}
-                        onChange={(event, newValue) => {
-                            setRatingValue(newValue);
-                            setValue(newValue || 0);
-                            setTags('');
-                            renderTags();
-                        }}
-                        onChangeActive={(event, newHover) => {
-                            setHover(newHover);
-                        }}
-                        disabled={disabled}
-                    />
-                    {value !== null && (stars.Labels && Object.keys(stars.Labels).length > 0) && <p className={descriptionClasses}>{stars.Labels[hover !== -1 ? hover : value]}</p>}
-                    {errors['rating'] && (
-                        <p className='rating__error'>Please select a rating</p>
-                    )}
-                </div>
-            );
+            return <Rater
+                ref={starsRef}
+                name={name}
+                value={value}
+                stars={stars}
+                onChange={(event, newValue) => {
+                    setRatingValue(newValue);
+                    setValue(newValue || 0);
+                    setTags('');
+                    renderTags();
+                }}
+                disabled={disabled}
+                errors={errors}
+            />;
         },
         handleTagChange = (e, tag) => {
             if (!showSubmit) {
                 setShowSubmit(true);
             }
             if (e.currentTarget.checked) {
-                setTags([...tags, tag]);
+                setTags(prevTags => [...prevTags, tag]);
                 !expanded && setExpanded(true);
             } else {
                 const copy = [...tags];
@@ -177,32 +152,18 @@ const RateComponent = forwardRef((props, ref) => {
                     copy.splice(index, 1);
                     setTags(copy);
                     tags.length === 0 && setExpanded(false);
-                    // setTagsValue([...tags].join(','));
                 }
             }
         },
         renderTags = (disabled) => {
-            const tagList = form.tags && form.tags.split(',');
-
             return (value > 0 && stars && stars.Tags && stars.Tags.length > 0) && (
-                <div
-                    className='rating__tags'
+                <TagList
                     ref={tagsRef}
-                >
-                    {
-                        Object.values(stars.Tags[value - 1]).map((tag) => {
-                            const checked = tagList.includes(tag);
-                            return <Tag
-                                key={`tag_${tag}`}
-                                label={tag}
-                                active={checked}
-                                disabled={disabled}
-                                onChange={e => handleTagChange(e, tag)}
-                            />;
-                        })
-                    }
-                    <input type='hidden' name='input_tags' id='input_tags' value={tags} />
-                </div>
+                    tags={stars.Tags[value - 1]}
+                    activeTags={tags}
+                    onChange={handleTagChange}
+                    disabled={disabled}
+                />
             );
         },
         /**
@@ -229,7 +190,8 @@ const RateComponent = forwardRef((props, ref) => {
                     aria-disabled={isDisabled}
                     disabled={isDisabled}
                     onClick={(e) => {
-                        onSubmit(e);
+                        const result = onSubmit(e);
+                        result && setSubmitted(true);
                     }}
                 >
                     Submit

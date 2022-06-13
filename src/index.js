@@ -30,7 +30,8 @@ window.RatingBlock = window.RatingBlock || {
             { 1: 'meh', 2: 'very meh', 3: 'extremely meh' },
             { 1: 'ok', 2: 'very ok', 3: 'extremely ok' },
             { 1: 'woop woop', 2: 'very woop woop', 3: 'extremely woop woop' },
-            { 1: 'wow', 2: 'very wow', 3: 'extremely wow' }
+            { 1: 'woop woop', 2: 'very woop woop', 3: 'extremely woop woop' }
+            // { 1: 'wow', 2: 'very wow', 3: 'extremely wow' }
         ]
     }
 };
