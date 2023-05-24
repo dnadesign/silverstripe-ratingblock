@@ -175,7 +175,7 @@ const RateComponent = forwardRef((props, ref) => {
             // if this component hasTags (default is true)
             // the check if stars.Tags is false tags.length === 0
             // otherwise we only need to consider the value of 'disabled'
-            const isDisabled = props.hasTags
+            const isDisabled = hasTags
                 ? ((!stars.Tags || tags.length === 0) || disabled)
                 : disabled;
             return (value > 0 && showSubmit && <>
