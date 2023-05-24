@@ -24,7 +24,8 @@ const RateComponent = forwardRef((props, ref) => {
             errors,
             loading,
             form,
-            page
+            page,
+            hasTags = true
         } = props,
         // check if this page has been previously rated by looking
         // for thje cookie with the pageName
@@ -133,6 +134,7 @@ const RateComponent = forwardRef((props, ref) => {
                     setValue(newValue || 0);
                     setTags('');
                     renderTags();
+                    !hasTags && setShowSubmit(true);
                 }}
                 disabled={disabled}
                 errors={errors}
@@ -170,7 +172,12 @@ const RateComponent = forwardRef((props, ref) => {
          * Render Submit button
          */
         renderSubmit = (disabled) => {
-            const isDisabled = (!stars.Tags || tags.length === 0) || disabled;
+            // if this component hasTags (default is true)
+            // the check if stars.Tags is false tags.length === 0
+            // otherwise we only need to consider the value of 'disabled'
+            const isDisabled = props.hasTags
+                ? ((!stars.Tags || tags.length === 0) || disabled)
+                : disabled;
             return (value > 0 && showSubmit && <>
                 <input
                     type='hidden'
@@ -265,7 +272,7 @@ const RateComponent = forwardRef((props, ref) => {
             return commentButtonRef.current;
         },
         get tags() {
-            return tagsRef.current;
+            return tagsRef ? tagsRef.current : [];
         },
         get ratingSubmit() {
             return ratingSubmitRef.current;
@@ -301,7 +308,7 @@ const RateComponent = forwardRef((props, ref) => {
                         {renderTitle()}
                         {renderIntro(loading, form.submitted)}
                         {renderStars(disabled)}
-                        {renderTags(disabled)}
+                        { hasTags && renderTags(disabled)}
 
                         {!previouslyRated && (
                             <>
